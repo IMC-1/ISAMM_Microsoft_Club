@@ -1,0 +1,360 @@
+.footer {
+    background: linear-gradient(135deg, var(--ms-dark-gray) 0%, #1a1a1a 100%);
+    color: white;
+    padding: 80px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--ms-blue), var(--ms-orange), var(--ms-green), var(--ms-cyan));
+}
+
+.footerContent {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footerSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.footerLogo {
+    height: 50px;
+    width: auto;
+}
+
+.clubName {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+}
+
+.clubDescription {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 15px;
+}
+
+.socialLink {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+    background: var(--ms-blue);
+    border-color: var(--ms-blue);
+    box-shadow: 0 8px 25px rgba(0, 120, 212, 0.4);
+    transform: translateY(-5px);
+}
+
+.sectionTitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-orange));
+}
+
+.linksList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.linksList li {
+    margin-bottom: 12px;
+}
+
+.footerLink {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.footerLink::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: var(--ms-orange);
+}
+
+.footerLink:hover {
+    color: white;
+    transform: translateX(15px);
+}
+
+.footerLink:hover::before {
+    opacity: 1;
+}
+
+.activityItem {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.contactInfo {
+    margin-bottom: 25px;
+}
+
+.contactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.contactIcon {
+    color: var(--ms-blue);
+    font-size: 1rem;
+    margin-top: 2px;
+    min-width: 16px;
+}
+
+.contactLink {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contactLink:hover {
+    color: white;
+}
+
+.newsletter {
+    margin-top: 20px;
+}
+
+.newsletterTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.newsletterForm {
+    display: flex;
+    gap: 10px;
+}
+
+.emailInput {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+}
+
+.emailInput::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.emailInput:focus {
+    outline: none;
+    border-color: var(--ms-blue);
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+}
+
+.subscribeButton {
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-orange));
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.subscribeButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 120, 212, 0.3);
+}
+
+.footerBottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.heartIcon {
+    color: #ff6b6b;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.footerBottomLinks {
+    display: flex;
+    gap: 25px;
+}
+
+.bottomLink {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.bottomLink:hover {
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .footerContent {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 60px 0 0;
+    }
+
+    .footerContent {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .logoSection {
+        justify-content: center;
+    }
+
+    .socialLinks {
+        justify-content: center;
+    }
+
+    .sectionTitle::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .newsletterForm {
+        flex-direction: column;
+    }
+
+    .subscribeButton {
+        width: 100%;
+    }
+
+    .footerBottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footerBottomLinks {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 50px 0 0;
+    }
+
+    .clubName {
+        font-size: 1.1rem;
+    }
+
+    .socialLinks {
+        gap: 10px;
+    }
+
+    .socialLink {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .footerBottomLinks {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .contactItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        text-align: left;
+    }
+}

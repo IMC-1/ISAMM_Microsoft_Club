@@ -1,0 +1,368 @@
+.partners {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.partnersDescription {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--ms-gray);
+    max-width: 650px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.partnersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.partnerCard {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 120, 212, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 120, 212, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 200px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.partnerCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ms-blue), var(--ms-orange));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.partnerCard:hover::before {
+    transform: scaleX(1);
+}
+
+.partnerCard:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(0, 120, 212, 0.15);
+    border-color: rgba(0, 120, 212, 0.1);
+}
+
+.partnerCard.noLink {
+    cursor: default;
+}
+
+.partnerCard.noLink:hover {
+    transform: translateY(-5px);
+}
+
+.logoContainer {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.partnerLogo {
+    max-width: 120px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+
+    transition: all 0.3s ease;
+}
+
+.partnerCard:hover .partnerLogo {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.logoPlaceholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-light-blue));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.partnerInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.partnerName {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ms-dark-gray);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.partnerDescription {
+    font-size: 0.95rem;
+    color: var(--ms-gray);
+    line-height: 1.4;
+    margin-bottom: 12px;
+    flex: 1;
+}
+
+.visitIndicator {
+    font-size: 0.85rem;
+    color: var(--ms-blue);
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.partnerCard:hover .visitIndicator {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.partnerCard:active {
+    transform: translateY(-5px) scale(0.98);
+}
+
+/* Partnership CTA Section */
+.partnershipCTA {
+    text-align: center;
+    background: linear-gradient(135deg, var(--ms-blue), var(--ms-light-blue));
+    padding: 60px 40px;
+    border-radius: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.partnershipCTA::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: float 20s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-30px, -30px) rotate(360deg);
+    }
+}
+
+.ctaTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.ctaDescription {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 500px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+}
+
+.ctaButton {
+    background: white;
+    color: var(--ms-blue);
+    border: none;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ctaButton:hover {
+    background: var(--ms-orange);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading state */
+.partnerCard.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--ms-blue);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .partners {
+        padding: 80px 0;
+    }
+
+    .partnersGrid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 60px;
+    }
+
+    .partnerCard {
+        padding: 25px 20px;
+        min-height: 180px;
+    }
+
+    .logoContainer {
+        height: 70px;
+        margin-bottom: 15px;
+    }
+
+    .partnerLogo {
+        max-width: 100px;
+        max-height: 70px;
+    }
+
+    .partnerName {
+        font-size: 1.1rem;
+    }
+
+    .partnerDescription {
+        font-size: 0.9rem;
+    }
+
+    .partnershipCTA {
+        padding: 40px 30px;
+    }
+
+    .ctaTitle {
+        font-size: 1.6rem;
+    }
+
+    .ctaDescription {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .partnersGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .partnerCard {
+        padding: 20px 15px;
+        min-height: 160px;
+    }
+
+    .logoContainer {
+        height: 60px;
+    }
+
+    .partnerLogo {
+        max-width: 80px;
+        max-height: 60px;
+    }
+
+    .partnerName {
+        font-size: 1rem;
+    }
+
+    .partnerDescription {
+        font-size: 0.85rem;
+    }
+
+    .partnershipCTA {
+        padding: 30px 20px;
+    }
+
+    .ctaTitle {
+        font-size: 1.4rem;
+    }
+
+    .ctaButton {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+/* Accessibility */
+.partnerCard:focus {
+    outline: 2px solid var(--ms-blue);
+    outline-offset: 2px;
+}
+
+.ctaButton:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .partnerCard {
+        border: 2px solid var(--ms-dark-gray);
+    }
+
+    .partnerLogo {
+        filter: none;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .partnerCard,
+    .partnerLogo,
+    .visitIndicator,
+    .ctaButton {
+        transition: none;
+    }
+
+    .partnershipCTA::before {
+        animation: none;
+    }
+}

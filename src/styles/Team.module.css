@@ -1,0 +1,309 @@
+.team {
+    padding: 100px 0;
+    background: white;
+}
+
+.teamDescription {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--ms-gray);
+    max-width: 700px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.teamGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.memberCard {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 120, 212, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 120, 212, 0.05);
+}
+
+.memberCard:hover {
+    box-shadow: 0 20px 60px rgba(0, 120, 212, 0.2);
+    transform: translateY(-5px);
+}
+
+.memberImageContainer {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.memberImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.memberCard:hover .memberImage {
+    transform: scale(1.1);
+}
+
+.memberOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            rgba(0, 120, 212, 0.9),
+            rgba(255, 140, 0, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.memberCard:hover .memberOverlay {
+    opacity: 1;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 15px;
+}
+
+.socialLink {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.memberCard:hover .socialLink {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.memberCard:hover .socialLink:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.memberCard:hover .socialLink:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.memberCard:hover .socialLink:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.memberCard:hover .socialLink:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.socialLink:hover {
+    background: white;
+    color: var(--ms-blue);
+    transform: translateY(-5px) scale(1.1);
+}
+
+.memberInfo {
+    padding: 30px;
+    text-align: center;
+}
+
+.memberName {
+    font-size: 1.4rem;
+    color: var(--ms-dark-gray);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.memberPosition {
+    font-size: 1rem;
+    color: var(--ms-blue);
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.memberDescription {
+    color: var(--ms-gray);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.joinTeam {
+    background: linear-gradient(135deg, var(--ms-blue), var(--ms-light-blue));
+    padding: 50px 40px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.joinTeam::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.05) 10px,
+            rgba(255, 255, 255, 0.05) 20px);
+    animation: movePattern 20s linear infinite;
+}
+
+@keyframes movePattern {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.joinTitle {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    z-index: 2;
+    position: relative;
+}
+
+.joinDescription {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    z-index: 2;
+    position: relative;
+}
+
+.joinButton {
+    background: white;
+    color: var(--ms-blue);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+.joinButton:hover {
+    background: var(--ms-orange);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .team {
+        padding: 80px 0;
+    }
+
+    .teamGrid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .memberCard {
+        margin: 0 10px;
+    }
+
+    .memberImageContainer {
+        height: 250px;
+    }
+
+    .memberInfo {
+        padding: 25px 20px;
+    }
+
+    .memberName {
+        font-size: 1.3rem;
+    }
+
+    .socialLinks {
+        gap: 12px;
+    }
+
+    .socialLink {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .joinTeam {
+        padding: 40px 30px;
+    }
+
+    .joinTitle {
+        font-size: 1.7rem;
+    }
+
+    .joinDescription {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .teamGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .memberImageContainer {
+        height: 220px;
+    }
+
+    .memberInfo {
+        padding: 20px 15px;
+    }
+
+    .memberName {
+        font-size: 1.2rem;
+    }
+
+    .memberDescription {
+        font-size: 0.9rem;
+    }
+
+    .joinTeam {
+        padding: 30px 20px;
+    }
+
+    .joinTitle {
+        font-size: 1.5rem;
+    }
+
+    .joinButton {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}

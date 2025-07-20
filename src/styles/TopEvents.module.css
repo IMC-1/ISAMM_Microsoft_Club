@@ -1,0 +1,575 @@
+.topEvents {
+    padding: 100px 0;
+    background: white;
+}
+
+.sectionDescription {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--ms-gray);
+    max-width: 700px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+}
+
+.eventsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.eventCard {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 120, 212, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 120, 212, 0.05);
+}
+
+.eventCard:hover {
+    box-shadow: 0 15px 50px rgba(0, 120, 212, 0.2);
+    transform: translateY(-5px);
+}
+
+.eventImage {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-light-blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.eventImagePlaceholder {
+    font-size: 4rem;
+    color: white;
+    opacity: 0.3;
+}
+
+.statusBadge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #4caf50;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.eventContent {
+    padding: 30px;
+}
+
+.eventTitle {
+    font-size: 1.4rem;
+    color: var(--ms-dark-gray);
+    margin-bottom: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.eventDescription {
+    color: var(--ms-gray);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.eventDetails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.eventDetail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--ms-gray);
+}
+
+.eventDetail svg {
+    color: var(--ms-blue);
+    font-size: 0.9rem;
+    min-width: 16px;
+}
+
+.eventActions {
+    display: flex;
+    gap: 12px;
+}
+
+.learnMoreBtn {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid var(--ms-blue);
+    background: var(--ms-blue);
+    color: white;
+    font-size: 0.9rem;
+}
+
+.learnMoreBtn:hover {
+    background: transparent;
+    color: var(--ms-blue);
+    transform: translateY(-2px);
+}
+
+.eventsFooter {
+    text-align: center;
+}
+
+.footerText {
+    font-size: 1.1rem;
+    color: var(--ms-gray);
+    font-style: italic;
+}
+
+/* Gallery Modal Styles */
+.galleryOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.galleryModal {
+    background: white;
+    border-radius: 15px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.galleryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.galleryTitle {
+    font-size: 1.5rem;
+    color: var(--ms-dark-gray);
+    margin: 0;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--ms-gray);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+    background: var(--ms-light-gray);
+    color: var(--ms-blue);
+}
+
+.galleryContent {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    flex: 1;
+}
+
+.navButton {
+    background: rgba(0, 120, 212, 0.1);
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--ms-blue);
+    transition: all 0.3s ease;
+    margin: 0 15px;
+}
+
+.navButton:hover {
+    background: var(--ms-blue);
+    color: white;
+    transform: scale(1.1);
+}
+
+.imageContainer {
+    flex: 1;
+    position: relative;
+    text-align: center;
+}
+
+.galleryImage {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.imageCounter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.galleryThumbnails {
+    display: flex;
+    gap: 10px;
+    padding: 20px 30px;
+    overflow-x: auto;
+    background: #f8f9fa;
+    max-height: 120px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.activeThumbnail {
+    opacity: 1;
+    border-color: var(--ms-blue);
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .topEvents {
+        padding: 80px 0;
+    }
+
+    .eventsGrid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .eventCard {
+        margin: 0 10px;
+    }
+
+    .eventContent {
+        padding: 25px 20px;
+    }
+
+    .eventDetails {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .galleryModal {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+
+    .galleryHeader {
+        padding: 15px 20px;
+    }
+
+    .galleryTitle {
+        font-size: 1.2rem;
+    }
+
+    .galleryContent {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .navButton {
+        margin: 10px 0;
+    }
+
+    .galleryImage {
+        max-height: 50vh;
+    }
+
+    .galleryThumbnails {
+        padding: 15px 20px;
+    }
+
+    .thumbnail {
+        width: 60px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eventImage {
+        height: 150px;
+    }
+
+    .eventImagePlaceholder {
+        font-size: 3rem;
+    }
+
+    .eventTitle {
+        font-size: 1.2rem;
+    }
+
+    .eventContent {
+        padding: 20px 15px;
+    }
+
+    .galleryContent {
+        padding: 10px;
+    }
+
+    .galleryImage {
+        max-height: 40vh;
+    }
+
+    .thumbnail {
+        width: 50px;
+        height: 40px;
+    }
+}
+
+/* Add these styles to your existing TopEvents.module.css file */
+
+.eventImage {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+}
+
+.eventBanner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.eventCard:hover .eventBanner {
+    transform: scale(1.05);
+}
+
+.eventImagePlaceholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-light-blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: white;
+    opacity: 0.3;
+}
+
+.bannerOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            rgba(0, 120, 212, 0.2) 0%,
+            rgba(0, 0, 0, 0.3) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.eventCard:hover .bannerOverlay {
+    opacity: 1;
+}
+
+.statusBadge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #4caf50;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced event card styling */
+.eventCard {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 120, 212, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 120, 212, 0.05);
+    position: relative;
+}
+
+.eventCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ms-blue), var(--ms-orange), var(--ms-green));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.eventCard:hover::before {
+    opacity: 1;
+}
+
+.eventCard:hover {
+    box-shadow: 0 20px 60px rgba(0, 120, 212, 0.2);
+    transform: translateY(-8px);
+}
+
+/* Banner loading states */
+.eventBanner[src=""],
+.eventBanner:not([src]) {
+    display: none;
+}
+
+/* Banner error handling */
+.eventImage img:not([src]),
+.eventImage img[src=""] {
+    display: none;
+}
+
+/* Responsive banner adjustments */
+@media (max-width: 768px) {
+    .eventImage {
+        height: 180px;
+    }
+
+    .statusBadge {
+        top: 10px;
+        right: 10px;
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eventImage {
+        height: 160px;
+    }
+
+    .eventImagePlaceholder {
+        font-size: 3rem;
+    }
+}
+
+/* Banner hover effects */
+.eventCard {
+    overflow: hidden;
+}
+
+.eventCard:hover .eventBanner {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+}
+
+/* Loading placeholder for banners */
+.eventBanner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.eventBanner[src]:not([src=""]) {
+    position: relative;
+}
+
+.eventBanner[src]:not([src=""])::before {
+    display: none;
+}
+
+/* Enhanced visual feedback */
+.eventCard {
+    cursor: pointer;
+}
+
+.eventCard:active {
+    transform: translateY(-5px) scale(0.98);
+}
+
+/* Improved accessibility for banners */
+.eventBanner:focus {
+    outline: 2px solid var(--ms-blue);
+    outline-offset: -2px;
+}
+
+/* Print styles for banners */
+@media print {
+    .bannerOverlay {
+        display: none;
+    }
+
+    .eventBanner {
+        filter: grayscale(100%);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .bannerOverlay {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .statusBadge {
+        border: 2px solid white;
+    }
+}

@@ -1,0 +1,224 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0, 120, 212, 0.1);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 20px rgba(0, 120, 212, 0.1);
+}
+
+.navContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.navLogo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: var(--ms-blue);
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.navLogo:hover {
+    text-decoration: none;
+    color: var(--ms-blue);
+}
+
+.navLogo:visited {
+    color: var(--ms-blue);
+    text-decoration: none;
+}
+
+.navLogo img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.navLogo:hover img {
+    transform: scale(1.1);
+}
+
+.navMenu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.navLink {
+    color: var(--ms-gray);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-orange));
+    transition: width 0.3s ease;
+}
+
+.navLink:hover {
+    color: var(--ms-blue);
+    text-decoration: none;
+}
+
+.navLink:hover::after {
+    width: 100%;
+}
+
+.joinButton {
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-light-blue));
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.joinButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 120, 212, 0.3);
+    text-decoration: none;
+    color: white;
+}
+
+.joinButton:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.joinButton:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 120, 212, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(0, 120, 212, 0);
+    }
+}
+
+.navToggle {
+    display: none;
+    color: var(--ms-blue);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navToggle:hover {
+    color: var(--ms-orange);
+}
+
+@media (max-width: 768px) {
+    .navMenu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 50px;
+        transition: left 0.3s ease;
+    }
+
+    .navMenu.active {
+        left: 0;
+    }
+
+    .navLink {
+        font-size: 1.2rem;
+        margin: 20px 0;
+        text-decoration: none;
+    }
+
+    .navLink:hover {
+        text-decoration: none;
+    }
+
+    .joinButton {
+        margin-top: 20px;
+        padding: 15px 30px;
+        text-decoration: none;
+    }
+
+    .joinButton:hover {
+        text-decoration: none;
+    }
+
+    .navToggle {
+        display: block;
+    }
+}
+
+/* Additional fixes for all states */
+.navLogo,
+.navLogo:hover,
+.navLogo:visited,
+.navLogo:focus,
+.navLogo:active {
+    text-decoration: none !important;
+}
+
+.navLink,
+.navLink:hover,
+.navLink:visited,
+.navLink:focus,
+.navLink:active {
+    text-decoration: none !important;
+}
+
+.joinButton,
+.joinButton:hover,
+.joinButton:visited,
+.joinButton:focus,
+.joinButton:active {
+    text-decoration: none !important;
+}

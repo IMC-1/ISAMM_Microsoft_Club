@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #323130;
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --ms-blue: #0078d4;
+  --ms-dark-blue: #106ebe;
+  --ms-light-blue: #40e0d0;
+  --ms-orange: #ff8c00;
+  --ms-green: #bad80a;
+  --ms-cyan: #00bcf2;
+  --ms-gray: #605e5c;
+  --ms-light-gray: #f3f2f1;
+  --ms-dark-gray: #323130;
+}

@@ -1,0 +1,315 @@
+.boardApplicationPage {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 120px 0 80px;
+}
+
+.pageHeader {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.pageTitle {
+    font-size: 3rem;
+    color: var(--ms-blue);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.pageSubtitle {
+    font-size: 1.3rem;
+    color: var(--ms-gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.applicationForm {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 60px rgba(0, 120, 212, 0.1);
+    padding: 50px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.formSection {
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid rgba(0, 120, 212, 0.1);
+}
+
+.formSection:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    color: var(--ms-blue);
+    margin-bottom: 30px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-orange));
+    border-radius: 2px;
+}
+
+.sectionNote {
+    color: var(--ms-gray);
+    font-style: italic;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.inputGroup {
+    margin-bottom: 25px;
+}
+
+.inputRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.label {
+    display: block;
+    font-weight: 600;
+    color: var(--ms-dark-gray);
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid rgba(0, 120, 212, 0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+    color: var(--ms-dark-gray);
+    font-family: inherit;
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border-color: var(--ms-blue);
+    box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.1);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+}
+
+.checkboxGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.checkboxLabel:hover {
+    background: rgba(0, 120, 212, 0.05);
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--ms-blue);
+}
+
+.referenceContainer {
+    background: rgba(0, 120, 212, 0.03);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(0, 120, 212, 0.1);
+}
+
+.referenceTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ms-dark-gray);
+    margin-bottom: 20px;
+}
+
+.agreementSection {
+    background: rgba(0, 120, 212, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 120, 212, 0.1);
+}
+
+.agreementLabel {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.agreementText {
+    color: var(--ms-gray);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.submitSection {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.submitButton {
+    background: linear-gradient(45deg, var(--ms-blue), var(--ms-light-blue));
+    color: white;
+    border: none;
+    padding: 18px 50px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 120, 212, 0.2);
+}
+
+.submitButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 120, 212, 0.3);
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .boardApplicationPage {
+        padding: 100px 0 60px;
+    }
+
+    .pageTitle {
+        font-size: 2.2rem;
+    }
+
+    .pageSubtitle {
+        font-size: 1.1rem;
+    }
+
+    .applicationForm {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+
+    .inputRow {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .checkboxGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .referenceContainer {
+        padding: 20px 15px;
+    }
+
+    .agreementLabel {
+        gap: 10px;
+    }
+
+    .submitButton {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pageTitle {
+        font-size: 1.8rem;
+    }
+
+    .applicationForm {
+        margin: 0 10px;
+    }
+
+    .sectionTitle {
+        font-size: 1.3rem;
+    }
+
+    .checkboxGrid {
+        gap: 10px;
+    }
+
+    .referenceContainer {
+        padding: 15px;
+    }
+}
+
+
+/* Add this new style to your existing BoardApplication.module.css */
+
+.positionNote {
+    background: rgba(255, 140, 0, 0.1);
+    border: 1px solid rgba(255, 140, 0, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.positionNote p {
+    margin: 0;
+    color: var(--ms-dark-gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.positionNote strong {
+    color: var(--ms-orange);
+}
+
+/* Update existing sectionNote style */
+.sectionNote {
+    color: var(--ms-gray);
+    font-style: italic;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    background: rgba(0, 120, 212, 0.05);
+    padding: 10px 15px;
+    border-radius: 6px;
+    border-left: 4px solid var(--ms-blue);
+}
+
+.sectionNote strong {
+    color: var(--ms-blue);
+    font-weight: 700;
+}
