@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
 import JoinUs from './pages/JoinUs';
+import BoardApplication from './pages/BoardApplication';
 import Footer from './components/Footer/Footer';
-import BoardApplication from './pages/BoardApplication'; // Add this import
 import './styles/globals.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.DEV ? '/' : '/isamm-microsoft-club'}>
       <div className="App">
         <Navbar />
         <Routes>
