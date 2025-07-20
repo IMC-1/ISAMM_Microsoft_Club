@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://imc-1.github.io/isamm-microsoft-club/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,7 +12,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://imc-1.github.io/isamm-microsoft-club/",
   "dependencies": {
     "framer-motion": "^12.23.6",
     "react": "^19.1.0",
