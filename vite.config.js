@@ -6,14 +6,6 @@ export default defineConfig({
   base: '/isamm-microsoft-club/',
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      }
-    }
-  },
-  server: {
-    open: true
+    assetsDir: 'assets'
   }
 })
