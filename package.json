@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://IMC-1.github.io/isamm-microsoft-club/",
+  "homepage": "https://imc-1.github.io/isamm-microsoft-club/",
   "dependencies": {
     "framer-motion": "^12.23.6",
     "react": "^19.1.0",
