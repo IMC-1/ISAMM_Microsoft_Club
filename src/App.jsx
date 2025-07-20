@@ -9,7 +9,7 @@ import './styles/globals.css';
 
 function App() {
   return (
-    <Router basename={import.meta.env.DEV ? '/' : '/isamm-microsoft-club'}>
+    <Router basename="/isamm-microsoft-club">
       <div className="App">
         <Navbar />
         <Routes>
