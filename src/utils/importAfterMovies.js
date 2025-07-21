@@ -1,4 +1,4 @@
-// Import after movie videos
+// Restore all video imports
 import video1 from '../assets/images/after movies/2024 is successfully closed.mp4';
 import video2 from '../assets/images/after movies/Coding Universe Short Movie Teaser.mp4';
 import video3 from '../assets/images/after movies/IMC Talk 2.0.mp4';
