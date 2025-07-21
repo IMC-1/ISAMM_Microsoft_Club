@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://imc-1.github.io/isamm-microsoft-club/",
+  "homepage": "https://imc-1.github.io/ISAMM_Microsoft_Club/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
