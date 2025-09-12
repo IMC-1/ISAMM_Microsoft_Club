@@ -152,16 +152,24 @@ const JoinUs = () => {
 
         try {
             const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
-            // Create FormData properly
+
+            // Check if environment variable exists
+            if (!APPS_SCRIPT_URL) {
+                throw new Error('Configuration error: API URL not found');
+            }
+
+            // Create FormData and append ALL form fields
             const formDataToSend = new FormData();
 
-            // Add all form fields individually
+            // Personal Information
             formDataToSend.append('fullName', formData.fullName || '');
             formDataToSend.append('dateOfBirth', formData.dateOfBirth || '');
             formDataToSend.append('gender', formData.gender || '');
             formDataToSend.append('university', formData.university || '');
             formDataToSend.append('yearOfStudy', formData.yearOfStudy || '');
             formDataToSend.append('fieldOfStudy', formData.fieldOfStudy || '');
+
+            // Contact Information
             formDataToSend.append('phoneNumber', formData.phoneNumber || '');
             formDataToSend.append('email', formData.email || '');
             formDataToSend.append('socialPlatform', formData.socialPlatform || '');
@@ -170,13 +178,19 @@ const JoinUs = () => {
             formDataToSend.append('state', formData.state || '');
             formDataToSend.append('howDidYouHear', formData.howDidYouHear || '');
             formDataToSend.append('howDidYouHearOther', formData.howDidYouHearOther || '');
+
+            // Experience
             formDataToSend.append('previousClubExperience', formData.previousClubExperience || '');
             formDataToSend.append('leadershipExperience', formData.leadershipExperience || '');
             formDataToSend.append('portfolioLinks', formData.portfolioLinks || '');
+
+            // Membership Details
             formDataToSend.append('interests', formData.interests || '');
             formDataToSend.append('whyJoin', formData.whyJoin || '');
             formDataToSend.append('whatToAchieve', formData.whatToAchieve || '');
             formDataToSend.append('timeCommitment', formData.timeCommitment || '');
+
+            // Additional Questions
             formDataToSend.append('biggestStrength', formData.biggestStrength || '');
             formDataToSend.append('skillToLearn', formData.skillToLearn || '');
             formDataToSend.append('weekendAvailability', formData.weekendAvailability || '');
@@ -184,51 +198,46 @@ const JoinUs = () => {
             formDataToSend.append('excitementLevel', formData.excitementLevel || '');
             formDataToSend.append('additionalComments', formData.additionalComments || '');
 
-            // Stringify teamRankings object
+            // Team Rankings (stringify the object)
             formDataToSend.append('teamRankings', JSON.stringify(formData.teamRankings));
 
             console.log('Submitting form data to:', APPS_SCRIPT_URL);
 
-            // Log form data for debugging
+            // Debug: Log all form data being sent
+            console.log('Form data being sent:');
             for (let [key, value] of formDataToSend.entries()) {
-                console.log(key, value);
+                console.log(`${key}: ${value}`);
             }
 
-            const response = await fetch(APPS_SCRIPT_URL, {
+            // Submit form data
+            await fetch(APPS_SCRIPT_URL, {
                 method: 'POST',
+                mode: 'no-cors', // This bypasses CORS but you can't read the response
                 body: formDataToSend,
             });
 
-            console.log('Response status:', response.status);
+            // Since we can't read the response with no-cors, assume success
+            console.log('Form submitted (no-cors mode)');
 
-            if (response.ok) {
-                const result = await response.json();
-                console.log('Success result:', result);
+            setSubmitStatus({
+                type: 'success',
+                message: 'Thank you for your application! We will contact you soon. 🎉'
+            });
 
-                setSubmitStatus({
-                    type: 'success',
-                    message: 'Thank you for your application! We will contact you soon. 🎉'
+            // Reset form after successful submission
+            setTimeout(() => {
+                setFormData({
+                    fullName: '', dateOfBirth: '', gender: '', university: '', yearOfStudy: '',
+                    fieldOfStudy: '', phoneNumber: '', email: '', socialPlatform: '', socialProfile: '',
+                    linkedinProfile: '', state: '', howDidYouHear: '', howDidYouHearOther: '',
+                    previousClubExperience: '', leadershipExperience: '', portfolioLinks: '',
+                    interests: '', whyJoin: '', whatToAchieve: '', timeCommitment: '', teamRankings: {
+                        designTeam: '', sponsoringTeam: '', productionTeam: '', projectTeam: '', logisticsTeam: ''
+                    }, biggestStrength: '', skillToLearn: '', weekendAvailability: '',
+                    schedulingConflicts: '', excitementLevel: '', additionalComments: '', agreement: false
                 });
-
-                // Reset form after successful submission
-                setTimeout(() => {
-                    setFormData({
-                        fullName: '', dateOfBirth: '', gender: '', university: '', yearOfStudy: '',
-                        fieldOfStudy: '', phoneNumber: '', email: '', socialPlatform: '', socialProfile: '',
-                        linkedinProfile: '', state: '', howDidYouHear: '', howDidYouHearOther: '',
-                        previousClubExperience: '', leadershipExperience: '', portfolioLinks: '',
-                        interests: '', whyJoin: '', whatToAchieve: '', timeCommitment: '', teamRankings: {
-                            designTeam: '', sponsoringTeam: '', productionTeam: '', projectTeam: '', logisticsTeam: ''
-                        }, biggestStrength: '', skillToLearn: '', weekendAvailability: '',
-                        schedulingConflicts: '', excitementLevel: '', additionalComments: '', agreement: false
-                    });
-                    setSubmitStatus({ type: '', message: '' });
-                }, 5000);
-
-            } else {
-                const errorText = await response.text();
-                throw new Error(`HTTP ${response.status}: ${errorText}`);
-            }
+                setSubmitStatus({ type: '', message: '' });
+            }, 5000);
 
         } catch (error) {
             console.error('Detailed submission error:', error);
@@ -240,6 +249,7 @@ const JoinUs = () => {
             setIsSubmitting(false);
         }
     };
+
 
     const tunisianStates = [
         'Tunis', 'Ariana', 'Ben Arous', 'Manouba', 'Nabeul', 'Zaghouan',
