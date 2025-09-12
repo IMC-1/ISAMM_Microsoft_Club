@@ -12,7 +12,7 @@ import {
     FaHeart
 } from 'react-icons/fa';
 import styles from '../../styles/Footer.module.css';
-import logo from '../../assets/images/imc_logo.png';
+import logo from '/assets/images/imc_logo.png';
 
 const Footer = () => {
     const quickLinks = [

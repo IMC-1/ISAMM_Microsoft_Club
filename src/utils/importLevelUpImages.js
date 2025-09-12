@@ -1,5 +1,35 @@
-const levelUpImages = Object.values(
-    import.meta.glob('../assets/images/Events/Level Up/*.{jpg,jpeg,png,svg}', { eager: true })
-).map(module => module.default);
+// Since images are in public folder, return array of public URLs (first 30 images due to large number)
+const levelUpImages = [
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493289349_1254371946688285_2800985046858815215_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493289454_1254372290021584_248126282730705304_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493290869_1254372063354940_9089437695438104954_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493292227_1254373146688165_6633820964449575707_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493310047_1254372066688273_7641232184171955470_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493310313_1254373343354812_8214190321666202845_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493310316_1254372336688246_6379213701794446541_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493311164_1254372103354936_474597658663060988_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493311164_1254372223354924_1742924141124576290_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493311372_1254373133354833_1275914544350847176_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493312118_1254373350021478_7978710391708643376_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493313849_1254372090021604_8426358786284152715_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493314446_1254372233354923_2613101640523681949_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493314464_1254371940021619_2782962083614826473_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493314676_1254372390021574_802498579818650500_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493316057_1254372110021602_5062351357904756625_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493316514_1254372086688271_6858262932982548320_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493317203_1254372043354942_6879694296892125130_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493321548_1254373326688147_246949652710229659_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493322184_1254372196688260_9186374533161185738_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493323377_1254371926688287_2115132733015056662_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493325332_1254371970021616_7920412799055618363_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493325928_1254372226688257_4009366053997985609_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493325928_1254372306688249_877562096207232573_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493326404_1254372060021607_1715706488633637621_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493326429_1254372040021609_8778255081253679773_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493326957_1254371933354953_8880479676008931610_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493327620_1254372296688250_7722127381644843634_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493331077_1254373316688148_4195502066249337265_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Level Up/493331908_1254372126688267_9124700175161048125_n.jpg'
+];
 
 export default levelUpImages;

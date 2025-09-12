@@ -15,6 +15,7 @@ const JoinUs = () => {
         // Contact Information
         phoneNumber: '',
         email: '',
+        socialPlatform: '', // New field for Facebook/Instagram choice
         socialProfile: '',
         linkedinProfile: '',
         state: '',
@@ -41,38 +42,6 @@ const JoinUs = () => {
             logisticsTeam: ''
         },
 
-        // Skills by team (will be dynamically shown)
-        designSkills: [],
-        designTools: [],
-        designExperience: '',
-        designPortfolio: '',
-
-        businessSkills: [],
-        languages: [],
-        businessExperience: '',
-        partnerships: '',
-
-        videoSkills: [],
-        productionTools: [],
-        videoExperience: '',
-        videoPortfolio: '',
-
-        programmingLanguages: [],
-        developmentAreas: [],
-        developmentTools: [],
-        programmingExperience: '',
-        codePortfolio: '',
-
-        eventSkills: [],
-        planningTools: [],
-        eventExperience: '',
-        largestEvent: '',
-
-        // Team specific questions
-        whyThisTeam: '',
-        uniqueSkills: '',
-        projectIdea: '',
-
         // Additional Questions
         biggestStrength: '',
         skillToLearn: '',
@@ -86,6 +55,8 @@ const JoinUs = () => {
     });
 
     const [rankingErrors, setRankingErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
     const teams = [
         { key: 'designTeam', name: '🎨 Design Team', desc: 'UI/UX design, graphics, and visual branding' },
@@ -156,28 +127,119 @@ const JoinUs = () => {
         setRankingErrors(errors);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus({ type: '', message: '' });
 
-        // Final validation for rankings
+        // Form validation (keep your existing validation code...)
         const rankingValidation = validateRankings(formData.teamRankings);
         const allRankingsFilled = Object.values(formData.teamRankings).every(r => r !== '');
 
         if (Object.keys(rankingValidation).length > 0) {
             setRankingErrors(rankingValidation);
-            alert('Please fix the ranking errors before submitting.');
+            setSubmitStatus({ type: 'error', message: 'Please fix the ranking errors before submitting.' });
+            setIsSubmitting(false);
             return;
         }
 
         if (!allRankingsFilled) {
             setRankingErrors({ incomplete: 'Please rank all teams from 1 to 5.' });
-            alert('Please rank all teams from 1 to 5.');
+            setSubmitStatus({ type: 'error', message: 'Please rank all teams from 1 to 5.' });
+            setIsSubmitting(false);
             return;
         }
 
-        console.log('Form submitted:', formData);
-        // Handle form submission here
-        alert('Thank you for your application! We will contact you soon.');
+        try {
+            const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydNrfmqkMkmwlDODxlJVGaD0Ew0hcUU4nLBYz68rDqG8_m8S9p9ykjmBJYsYOvymRs/exec';
+
+            // Create FormData properly
+            const formDataToSend = new FormData();
+
+            // Add all form fields individually
+            formDataToSend.append('fullName', formData.fullName || '');
+            formDataToSend.append('dateOfBirth', formData.dateOfBirth || '');
+            formDataToSend.append('gender', formData.gender || '');
+            formDataToSend.append('university', formData.university || '');
+            formDataToSend.append('yearOfStudy', formData.yearOfStudy || '');
+            formDataToSend.append('fieldOfStudy', formData.fieldOfStudy || '');
+            formDataToSend.append('phoneNumber', formData.phoneNumber || '');
+            formDataToSend.append('email', formData.email || '');
+            formDataToSend.append('socialPlatform', formData.socialPlatform || '');
+            formDataToSend.append('socialProfile', formData.socialProfile || '');
+            formDataToSend.append('linkedinProfile', formData.linkedinProfile || '');
+            formDataToSend.append('state', formData.state || '');
+            formDataToSend.append('howDidYouHear', formData.howDidYouHear || '');
+            formDataToSend.append('howDidYouHearOther', formData.howDidYouHearOther || '');
+            formDataToSend.append('previousClubExperience', formData.previousClubExperience || '');
+            formDataToSend.append('leadershipExperience', formData.leadershipExperience || '');
+            formDataToSend.append('portfolioLinks', formData.portfolioLinks || '');
+            formDataToSend.append('interests', formData.interests || '');
+            formDataToSend.append('whyJoin', formData.whyJoin || '');
+            formDataToSend.append('whatToAchieve', formData.whatToAchieve || '');
+            formDataToSend.append('timeCommitment', formData.timeCommitment || '');
+            formDataToSend.append('biggestStrength', formData.biggestStrength || '');
+            formDataToSend.append('skillToLearn', formData.skillToLearn || '');
+            formDataToSend.append('weekendAvailability', formData.weekendAvailability || '');
+            formDataToSend.append('schedulingConflicts', formData.schedulingConflicts || '');
+            formDataToSend.append('excitementLevel', formData.excitementLevel || '');
+            formDataToSend.append('additionalComments', formData.additionalComments || '');
+
+            // Stringify teamRankings object
+            formDataToSend.append('teamRankings', JSON.stringify(formData.teamRankings));
+
+            console.log('Submitting form data to:', APPS_SCRIPT_URL);
+
+            // Log form data for debugging
+            for (let [key, value] of formDataToSend.entries()) {
+                console.log(key, value);
+            }
+
+            const response = await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: formDataToSend,
+            });
+
+            console.log('Response status:', response.status);
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Success result:', result);
+
+                setSubmitStatus({
+                    type: 'success',
+                    message: 'Thank you for your application! We will contact you soon. 🎉'
+                });
+
+                // Reset form after successful submission
+                setTimeout(() => {
+                    setFormData({
+                        fullName: '', dateOfBirth: '', gender: '', university: '', yearOfStudy: '',
+                        fieldOfStudy: '', phoneNumber: '', email: '', socialPlatform: '', socialProfile: '',
+                        linkedinProfile: '', state: '', howDidYouHear: '', howDidYouHearOther: '',
+                        previousClubExperience: '', leadershipExperience: '', portfolioLinks: '',
+                        interests: '', whyJoin: '', whatToAchieve: '', timeCommitment: '', teamRankings: {
+                            designTeam: '', sponsoringTeam: '', productionTeam: '', projectTeam: '', logisticsTeam: ''
+                        }, biggestStrength: '', skillToLearn: '', weekendAvailability: '',
+                        schedulingConflicts: '', excitementLevel: '', additionalComments: '', agreement: false
+                    });
+                    setSubmitStatus({ type: '', message: '' });
+                }, 5000);
+
+            } else {
+                const errorText = await response.text();
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
+            }
+
+        } catch (error) {
+            console.error('Detailed submission error:', error);
+            setSubmitStatus({
+                type: 'error',
+                message: `Submission failed: ${error.message}`
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const tunisianStates = [
@@ -202,6 +264,17 @@ const JoinUs = () => {
                     </p>
                 </motion.div>
 
+                {/* Submit Status Message */}
+                {submitStatus.message && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`${styles.statusMessage} ${styles[submitStatus.type]}`}
+                    >
+                        {submitStatus.message}
+                    </motion.div>
+                )}
+
                 <motion.form
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -222,6 +295,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -234,6 +308,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -249,6 +324,7 @@ const JoinUs = () => {
                                             checked={formData.gender === option}
                                             onChange={handleChange}
                                             className={styles.radio}
+                                            disabled={isSubmitting}
                                         />
                                         {option}
                                     </label>
@@ -265,6 +341,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -280,6 +357,7 @@ const JoinUs = () => {
                                             checked={formData.yearOfStudy === option}
                                             onChange={handleChange}
                                             className={styles.radio}
+                                            disabled={isSubmitting}
                                         />
                                         {option}
                                     </label>
@@ -296,6 +374,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
                     </div>
@@ -313,6 +392,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -325,29 +405,75 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
+                        {/* Updated Social Profile Section */}
                         <div className={styles.inputGroup}>
-                            <label className={styles.label}>Facebook or Instagram Profile *</label>
-                            <input
-                                type="url"
-                                name="socialProfile"
-                                value={formData.socialProfile}
-                                onChange={handleChange}
-                                className={styles.input}
-                                required
-                            />
+                            <label className={styles.label}>Social Media Profile *</label>
+                            <p className={styles.fieldNote}>
+                                <strong>Note:</strong> We prefer a direct link to your profile, but you can also provide your username.
+                            </p>
+
+                            {/* Platform Selection */}
+                            <div className={styles.platformSelection}>
+                                <label className={styles.label}>Choose Platform:</label>
+                                <div className={styles.checkboxGroup}>
+                                    {['Facebook', 'Instagram'].map(platform => (
+                                        <label key={platform} className={styles.checkboxLabel}>
+                                            <input
+                                                type="radio"
+                                                name="socialPlatform"
+                                                value={platform}
+                                                checked={formData.socialPlatform === platform}
+                                                onChange={handleChange}
+                                                className={styles.radio}
+                                                disabled={isSubmitting}
+                                            />
+                                            <span className={styles.platformIcon}>
+                                                {platform === 'Facebook' ? '📘' : '📷'}
+                                            </span>
+                                            {platform}
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Profile Input */}
+                            {formData.socialPlatform && (
+                                <div className={styles.profileInput}>
+                                    <input
+                                        type="text"
+                                        name="socialProfile"
+                                        value={formData.socialProfile}
+                                        onChange={handleChange}
+                                        className={styles.input}
+                                        placeholder={
+                                            formData.socialPlatform === 'Facebook'
+                                                ? "e.g., https://facebook.com/yourprofile or your.username"
+                                                : "e.g., https://instagram.com/yourusername or @yourusername"
+                                        }
+                                        required
+                                        disabled={isSubmitting}
+                                    />
+                                </div>
+                            )}
                         </div>
 
                         <div className={styles.inputGroup}>
                             <label className={styles.label}>LinkedIn Profile (optional)</label>
+                            <p className={styles.fieldNote}>
+                                <strong>Note:</strong> We prefer a direct link to your LinkedIn profile.
+                            </p>
                             <input
-                                type="url"
+                                type="text"
                                 name="linkedinProfile"
                                 value={formData.linkedinProfile}
                                 onChange={handleChange}
                                 className={styles.input}
+                                placeholder="e.g., https://linkedin.com/in/yourprofile"
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -363,6 +489,7 @@ const JoinUs = () => {
                                             checked={formData.state === state}
                                             onChange={handleChange}
                                             className={styles.radio}
+                                            disabled={isSubmitting}
                                         />
                                         {state}
                                     </label>
@@ -389,6 +516,7 @@ const JoinUs = () => {
                                             checked={formData.howDidYouHear === option}
                                             onChange={handleChange}
                                             className={styles.radio}
+                                            disabled={isSubmitting}
                                         />
                                         {option}
                                     </label>
@@ -402,6 +530,7 @@ const JoinUs = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     placeholder="Please specify..."
+                                    disabled={isSubmitting}
                                 />
                             )}
                         </div>
@@ -419,6 +548,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.textarea}
                                 rows="3"
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -430,6 +560,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.textarea}
                                 rows="3"
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -442,6 +573,7 @@ const JoinUs = () => {
                                 className={styles.textarea}
                                 rows="2"
                                 placeholder="Please provide links to your work..."
+                                disabled={isSubmitting}
                             />
                         </div>
                     </div>
@@ -459,6 +591,7 @@ const JoinUs = () => {
                                 className={styles.textarea}
                                 rows="3"
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -471,6 +604,7 @@ const JoinUs = () => {
                                 className={styles.textarea}
                                 rows="4"
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -483,6 +617,7 @@ const JoinUs = () => {
                                 className={styles.textarea}
                                 rows="4"
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -498,6 +633,7 @@ const JoinUs = () => {
                                             checked={formData.timeCommitment === option}
                                             onChange={handleChange}
                                             className={styles.radio}
+                                            disabled={isSubmitting}
                                         />
                                         {option}
                                     </label>
@@ -506,7 +642,7 @@ const JoinUs = () => {
                         </div>
                     </div>
 
-                    {/* Team Selection - Updated with unique ranking validation */}
+                    {/* Team Selection */}
                     <div className={styles.formSection}>
                         <h2 className={styles.sectionTitle}>Team Selection - Choose Your Adventure! 🚀</h2>
                         <p className={styles.sectionDescription}>
@@ -539,6 +675,7 @@ const JoinUs = () => {
                                             className={`${styles.select} ${rankingErrors.duplicate && formData.teamRankings[team.key] ? styles.errorInput : ''
                                                 }`}
                                             required
+                                            disabled={isSubmitting}
                                         >
                                             <option value="">Select</option>
                                             {getAvailableRankings(team.key).map(num => (
@@ -602,6 +739,7 @@ const JoinUs = () => {
                                 className={styles.textarea}
                                 rows="3"
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -614,6 +752,7 @@ const JoinUs = () => {
                                 className={styles.textarea}
                                 rows="2"
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -629,6 +768,7 @@ const JoinUs = () => {
                                             checked={formData.weekendAvailability === option}
                                             onChange={handleChange}
                                             className={styles.radio}
+                                            disabled={isSubmitting}
                                         />
                                         {option}
                                     </label>
@@ -644,6 +784,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.textarea}
                                 rows="2"
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -659,6 +800,7 @@ const JoinUs = () => {
                                             checked={formData.excitementLevel === num.toString()}
                                             onChange={handleChange}
                                             className={styles.radio}
+                                            disabled={isSubmitting}
                                         />
                                         {num}
                                     </label>
@@ -674,6 +816,7 @@ const JoinUs = () => {
                                 onChange={handleChange}
                                 className={styles.textarea}
                                 rows="4"
+                                disabled={isSubmitting}
                             />
                         </div>
                     </div>
@@ -691,6 +834,7 @@ const JoinUs = () => {
                                     onChange={handleChange}
                                     className={styles.checkbox}
                                     required
+                                    disabled={isSubmitting}
                                 />
                                 <span className={styles.agreementText}>
                                     I agree to the terms and conditions of joining ISAMM Microsoft Club and understand that
@@ -702,8 +846,19 @@ const JoinUs = () => {
                     </div>
 
                     <div className={styles.submitSection}>
-                        <button type="submit" className={styles.submitButton}>
-                            Submit Application
+                        <button
+                            type="submit"
+                            className={`${styles.submitButton} ${isSubmitting ? styles.submitting : ''}`}
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? (
+                                <>
+                                    <span className={styles.spinner}></span>
+                                    Submitting Application...
+                                </>
+                            ) : (
+                                'Submit Application'
+                            )}
                         </button>
                     </div>
                 </motion.form>

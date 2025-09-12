@@ -1,5 +1,41 @@
-const codingUniverseImages = Object.values(
-    import.meta.glob('../assets/images/Events/Coding Universe Hackathon/*.{jpg,jpeg,png,svg}', { eager: true })
-).map(module => module.default);
+// Since images are in public folder, return array of public URLs
+const codingUniverseImages = [
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/346982136_780938797068020_3550790167764217857_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347132112_184564604146074_6553017539494692515_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347222854_102829036154954_6463992710285452447_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347223415_982208073227921_5360515968519074425_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347233278_244357354947081_2695055399019653610_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347288798_567342562180552_1003417255637865313_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347307379_6307149659347234_2508128080591963889_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347436745_2422309027951831_2628519033585169030_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347447514_220953997354640_2894751746911121516_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347557586_601816488604345_4647036222728488367_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/347873511_1692224521236821_1280941360703896309_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/348226423_1450787099108085_667005281935991319_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/348254516_1680890762323713_8585212673275241207_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/348287638_531225815697209_7290929272275151066_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/348490607_136228922786012_3522274133668290828_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/348556836_924333918682839_5683207546785335022_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9033.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9034.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9149.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9166.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9189.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9220.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9306.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9307.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9348.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9401.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9402.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9445.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9516.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9541.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9544.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9553.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9557.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9577.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9600.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/Coding Universe Hackathon/IMG_9621.jpg'
+];
 
 export default codingUniverseImages;

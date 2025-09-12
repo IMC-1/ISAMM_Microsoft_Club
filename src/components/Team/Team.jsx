@@ -1,116 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope, FaUser } from 'react-icons/fa';
 import styles from '../../styles/Team.module.css';
-import img1 from '../../assets/images/managers/img.jpg';
-import img2 from '../../assets/images/managers/img.jpg';
-import img3 from '../../assets/images/managers/img.jpg';
-import img4 from '../../assets/images/managers/img.jpg';
-import img5 from '../../assets/images/managers/img.jpg';
-import img6 from '../../assets/images/managers/img.jpg';
-import img7 from '../../assets/images/managers/img.jpg';
-import img8 from '../../assets/images/managers/img.jpg';
+import teamData from '../../data/teamData';
 
 const Team = () => {
-    const teamMembers = [
-        {
-            name: "Ahmed Ben Salem",
-            position: "President",
-            image: img1,
-            description: "Leading the club with passion for technology and innovation. Computer Science student with expertise in full-stack development.",
-            social: {
-                linkedin: "#",
-                github: "#",
-                twitter: "#",
-                email: "ahmed@isaммmc.org"
-            }
-        },
-        {
-            name: "Fatma Trabelsi",
-            position: "Vice President",
-            image: img2,
-            description: "Supporting strategic initiatives and member engagement. Specializes in project management and business development.",
-            social: {
-                linkedin: "#",
-                github: "#",
-                twitter: "#",
-                email: "fatma@isaммmc.org"
-            }
-        },
-        {
-            name: "Mohamed Gharbi",
-            position: "Production Manager",
-            image: img3,
-            description: "Overseeing all production activities and content creation. Expert in multimedia production and event management.",
-            social: {
-                linkedin: "#",
-                github: "#",
-                twitter: "#",
-                email: "mohamed@isaммmc.org"
-            }
-        },
-        {
-            name: "Salma Bouaziz",
-            position: "Project Manager",
-            image: img4,
-            description: "Managing technical projects and team coordination. Skilled in agile methodologies and software development.",
-            social: {
-                linkedin: "#",
-                github: "#",
-                twitter: "#",
-                email: "salma@isaммmc.org"
-            }
-        },
-        {
-            name: "Youssef Mansouri",
-            position: "Sponsoring Manager",
-            image: img5,
-            description: "Building partnerships and managing sponsor relationships. Business-oriented with strong networking skills.",
-            social: {
-                linkedin: "#",
-                github: "#",
-                twitter: "#",
-                email: "youssef@isaммmc.org"
-            }
-        },
-        {
-            name: "Leila Jrad",
-            position: "Community Manager",
-            image: img6,
-            description: "Engaging with our community and managing social media presence. Expert in digital marketing and community building.",
-            social: {
-                linkedin: "#",
-                github: "#",
-                twitter: "#",
-                email: "leila@isaммmc.org"
-            }
-        },
-        {
-            name: "Amira Ben Ali",
-            position: "Training Manager",
-            image: img7,
-            description: "Leading our comprehensive training programs and educational initiatives. Specializes in curriculum development and skills enhancement.",
-            social: {
-                linkedin: "#",
-                github: "#",
-                twitter: "#",
-                email: "amira@isaммmc.org"
-            }
-        },
-        {
-            name: "Karim Zaidi",
-            position: "Logistics Manager",
-            image: img8,
-            description: "Orchestrating seamless event planning and operational coordination. Expert in project management and resource optimization.",
-            social: {
-                linkedin: "#",
-                github: "#",
-                twitter: "#",
-                email: "karim@isaммmc.org"
-            }
+    const handleImageError = (e) => {
+        // If image fails to load, show fallback
+        e.target.style.display = 'none';
+        const fallbackDiv = e.target.parentNode.querySelector(`.${styles.imageFallback}`);
+        if (fallbackDiv) {
+            fallbackDiv.style.display = 'flex';
         }
-    ];
+    };
+
+    const handleImageLoad = (e) => {
+        // If image loads successfully, hide fallback
+        const fallbackDiv = e.target.parentNode.querySelector(`.${styles.imageFallback}`);
+        if (fallbackDiv) {
+            fallbackDiv.style.display = 'none';
+        }
+    };
 
     return (
         <section className={styles.team}>
@@ -137,9 +48,9 @@ const Team = () => {
                 </motion.p>
 
                 <div className={styles.teamGrid}>
-                    {teamMembers.map((member, index) => (
+                    {teamData.map((member, index) => (
                         <motion.div
-                            key={index}
+                            key={member.id}
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -152,19 +63,54 @@ const Team = () => {
                                     src={member.image}
                                     alt={member.name}
                                     className={styles.memberImage}
+                                    onError={handleImageError}
+                                    onLoad={handleImageLoad}
                                 />
+
+                                {/* Fallback div shown when image fails */}
+                                <div className={styles.imageFallback}>
+                                    <FaUser className={styles.fallbackIcon} />
+                                    <span className={styles.fallbackInitials}>
+                                        {member.name.split(' ').map(n => n[0]).join('')}
+                                    </span>
+                                </div>
+
                                 <div className={styles.memberOverlay}>
                                     <div className={styles.socialLinks}>
-                                        <a href={member.social.linkedin} className={styles.socialLink}>
-                                            <FaLinkedin />
-                                        </a>
-                                        <a href={member.social.github} className={styles.socialLink}>
-                                            <FaGithub />
-                                        </a>
-                                        <a href={member.social.twitter} className={styles.socialLink}>
-                                            <FaTwitter />
-                                        </a>
-                                        <a href={`mailto:${member.social.email}`} className={styles.socialLink}>
+                                        {member.social.linkedin && member.social.linkedin !== "#" && (
+                                            <a
+                                                href={member.social.linkedin}
+                                                className={styles.socialLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <FaLinkedin />
+                                            </a>
+                                        )}
+                                        {member.social.github && member.social.github !== "#" && (
+                                            <a
+                                                href={member.social.github}
+                                                className={styles.socialLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <FaGithub />
+                                            </a>
+                                        )}
+                                        {member.social.twitter && member.social.twitter !== "#" && (
+                                            <a
+                                                href={member.social.twitter}
+                                                className={styles.socialLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <FaTwitter />
+                                            </a>
+                                        )}
+                                        <a
+                                            href={`mailto:${member.social.email}`}
+                                            className={styles.socialLink}
+                                        >
                                             <FaEnvelope />
                                         </a>
                                     </div>

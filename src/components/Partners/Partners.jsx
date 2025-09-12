@@ -3,16 +3,16 @@ import { motion } from 'framer-motion';
 import styles from '../../styles/Partners.module.css';
 
 // Import all partner logos
-import aloraShop from '../../assets/images/partners/alora shop.png';
-import artul from '../../assets/images/partners/artul.png';
-import casa from '../../assets/images/partners/casa.png';
-import esenMicrosoft from '../../assets/images/partners/esen microsoft club.png';
-import fabskills from '../../assets/images/partners/Fabskills.png';
-import isammLogo from '../../assets/images/partners/isamm logo.png';
-import jciManouba from '../../assets/images/partners/JCI-Manouba.png';
-import mlsa from '../../assets/images/partners/MLSA.png';
-import redix from '../../assets/images/partners/REDIX_LOGOO.png';
-import yessly from '../../assets/images/partners/yessly training center.png';
+import aloraShop from '/assets/images/partners/alora shop.png';
+import artul from '/assets/images/partners/artul.png';
+import casa from '/assets/images/partners/casa.png';
+import esenMicrosoft from '/assets/images/partners/esen microsoft club.png';
+import fabskills from '/assets/images/partners/Fabskills.png';
+import isammLogo from '/assets/images/partners/isamm logo.png';
+import jciManouba from '/assets/images/partners/JCI-Manouba.png';
+import mlsa from '/assets/images/partners/MLSA.png';
+import redix from '/assets/images/partners/REDIX_LOGOO.png';
+import yessly from '/assets/images/partners/yessly training center.png';
 
 const Partners = () => {
     const partners = [

@@ -1,5 +1,35 @@
-const sdgsoft2Images = Object.values(
-    import.meta.glob('../assets/images/Events/SDGSOFT 2.0/*.{jpg,jpeg,png,svg}', { eager: true })
-).map(module => module.default);
+// Since images are in public folder, return array of public URLs
+const sdgsoft2Images = [
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/490749696_1251171887008291_1615181113967100623_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/490776969_1251172093674937_6687399039531632235_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/490964532_1251171903674956_405390594669103264_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/490979346_1251171863674960_6517613635930003311_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/490982303_1251171683674978_4867069032259767477_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491078445_1251171737008306_4324473531137886999_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491141989_1251171730341640_7809050824402046867_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491162813_1251171793674967_1384706505824457930_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491263168_1251171820341631_6734306255439106960_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491287488_1251172157008264_3980320548553280175_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491300355_1251171963674950_4456248769468524804_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491308963_1251171837008296_3086909016779096027_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491368572_1251171880341625_5196866443931699458_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491399179_1251171933674953_4384886251881964321_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491551008_1251172030341610_1526186719533931401_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491919353_1251171777008302_7529390645683758555_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491923616_1251171907008289_5714989336452458987_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491929258_1251171857008294_5362523100664962205_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491971318_1250700733722073_198666414793051881_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491971561_1251172037008276_3290585439852598176_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/491991671_1250700780388735_540819919322821786_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492000087_1250701143722032_4625663134050956416_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492001816_1250700643722082_1693978562965062068_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492087654_1251171830341630_2490087856843623616_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492098467_1250701160388697_2158539741761781154_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492098780_1251171767008303_1962663453926021733_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492114699_1251171827008297_6452233008645208056_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492165139_1250700523722094_7693759364762410899_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492190137_1250700777055402_269717634285285530_n.jpg',
+    '/ISAMM_Microsoft_Club/assets/images/Events/SDGSOFT 2.0/492198619_1250701157055364_5180084750123878543_n.jpg'
+];
 
 export default sdgsoft2Images;

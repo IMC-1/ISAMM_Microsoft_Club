@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styles from '../../styles/Banner.module.css';
-import banner1 from '../../assets/images/banners/Banner (1).jpg';
-import banner2 from '../../assets/images/banners/Banner (2).jpg';
-import banner3 from '../../assets/images/banners/Banner (3).jpg';
-import banner4 from '../../assets/images/banners/Banner (1).png';
+import banner1 from '/assets/images/banners/Banner (1).jpg';
+import banner2 from '/assets/images/banners/Banner (2).jpg';
+import banner3 from '/assets/images/banners/Banner (3).jpg';
+import banner4 from '/assets/images/banners/Banner (1).png';
 
 const Banner = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
