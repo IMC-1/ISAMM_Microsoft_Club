@@ -151,8 +151,7 @@ const JoinUs = () => {
         }
 
         try {
-            const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydNrfmqkMkmwlDODxlJVGaD0Ew0hcUU4nLBYz68rDqG8_m8S9p9ykjmBJYsYOvymRs/exec';
-
+            const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
             // Create FormData properly
             const formDataToSend = new FormData();
 
