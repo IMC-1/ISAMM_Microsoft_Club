@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope, FaUser } from 'react-icons/fa';
+import { FaInstagram, FaGlobe, FaLinkedin, FaEnvelope, FaBehance, FaUser } from 'react-icons/fa';
 import styles from '../../styles/Team.module.css';
 import teamData from '../../data/teamData';
 
@@ -23,40 +23,91 @@ const Team = () => {
         }
     };
 
-    return (
-        <section className={styles.team}>
-            <div className="container">
-                <motion.h2
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="section-title"
-                >
-                    Our Team
-                </motion.h2>
+    // Component to render social links conditionally
+    const SocialLinks = ({ social }) => {
+        return (
+            <div className={styles.socialLinks}>
+                {social.instagram && social.instagram.trim() && (
+                    <a
+                        href={social.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.socialLink}
+                        aria-label="Instagram"
+                    >
+                        <FaInstagram />
+                    </a>
+                )}
+                {social.website && social.website.trim() && (
+                    <a
+                        href={social.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.socialLink}
+                        aria-label="Official Website"
+                    >
+                        <FaGlobe />
+                    </a>
+                )}
+                {social.linkedin && social.linkedin.trim() && (
+                    <a
+                        href={social.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.socialLink}
+                        aria-label="LinkedIn"
+                    >
+                        <FaLinkedin />
+                    </a>
+                )}
+                {social.email && social.email.trim() && (
+                    <a
+                        href={`mailto:${social.email}`}
+                        className={styles.socialLink}
+                        aria-label="Email"
+                    >
+                        <FaEnvelope />
+                    </a>
+                )}
+                {social.behance && social.behance.trim() && (
+                    <a
+                        href={social.behance}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.socialLink}
+                        aria-label="Behance"
+                    >
+                        <FaBehance />
+                    </a>
+                )}
+            </div>
+        );
+    };
 
-                <motion.p
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className={styles.teamDescription}
+    return (
+        <div className={styles.team}>
+            <div className="container">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className={styles.teamHeader}
                 >
-                    Meet the dedicated individuals who drive our club forward, bringing together
-                    diverse skills and expertise to create exceptional experiences for our community.
-                </motion.p>
+                    <h2 className={styles.sectionTitle}>Our Team</h2>
+                    <p className={styles.teamDescription}>
+                        Meet the dedicated individuals who drive our club forward, bringing together
+                        diverse skills and expertise to create exceptional experiences for our community.
+                    </p>
+                </motion.div>
 
                 <div className={styles.teamGrid}>
                     {teamData.map((member, index) => (
                         <motion.div
                             key={member.id}
                             initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            viewport={{ once: true }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: index * 0.1 }}
                             className={styles.memberCard}
-                            whileHover={{ y: -10 }}
                         >
                             <div className={styles.memberImageContainer}>
                                 <img
@@ -69,51 +120,12 @@ const Team = () => {
 
                                 {/* Fallback div shown when image fails */}
                                 <div className={styles.imageFallback}>
-                                    <FaUser className={styles.fallbackIcon} />
-                                    <span className={styles.fallbackInitials}>
-                                        {member.name.split(' ').map(n => n[0]).join('')}
-                                    </span>
+                                    <FaUser />
+                                    <span>{member.name.split(' ').map(n => n[0]).join('')}</span>
                                 </div>
 
                                 <div className={styles.memberOverlay}>
-                                    <div className={styles.socialLinks}>
-                                        {member.social.linkedin && member.social.linkedin !== "#" && (
-                                            <a
-                                                href={member.social.linkedin}
-                                                className={styles.socialLink}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <FaLinkedin />
-                                            </a>
-                                        )}
-                                        {member.social.github && member.social.github !== "#" && (
-                                            <a
-                                                href={member.social.github}
-                                                className={styles.socialLink}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <FaGithub />
-                                            </a>
-                                        )}
-                                        {member.social.twitter && member.social.twitter !== "#" && (
-                                            <a
-                                                href={member.social.twitter}
-                                                className={styles.socialLink}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <FaTwitter />
-                                            </a>
-                                        )}
-                                        <a
-                                            href={`mailto:${member.social.email}`}
-                                            className={styles.socialLink}
-                                        >
-                                            <FaEnvelope />
-                                        </a>
-                                    </div>
+                                    <SocialLinks social={member.social} />
                                 </div>
                             </div>
 
@@ -128,9 +140,8 @@ const Team = () => {
 
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
                     className={styles.joinTeam}
                 >
                     <h3 className={styles.joinTitle}>Want to Join Our Executive Board?</h3>
@@ -138,12 +149,12 @@ const Team = () => {
                         We're looking for passionate leaders to join our executive team and help shape the future
                         of ISAMM Microsoft Club. Take the next step in your leadership journey!
                     </p>
-                    <Link to="/board-application" className={styles.joinButton}>
+                    <Link to="/join" className={styles.joinButton}>
                         Apply Now
                     </Link>
                 </motion.div>
             </div>
-        </section>
+        </div>
     );
 };
 

@@ -1,109 +1,104 @@
-// Team members data for ISAMM Microsoft Club
+// Team members data for ISAMM Microsoft Club - Updated with real data
 const teamData = [
     {
         id: 1,
-        name: "Ahmed Ben Salem",
+        name: "Salma Msahli",
         position: "President",
-        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
-        description: "Leading the club with passion for technology and innovation. Computer Science student with expertise in full-stack development.",
+        image: "/ISAMM_Microsoft_Club/assets/images/managers/img1.jpeg",
+        description: "Leading the ISAMM Microsoft Club with passion for technology and innovation. Driving strategic vision and fostering a collaborative environment for growth.",
         social: {
-            linkedin: "https://www.linkedin.com/in/ahmed-ben-salem",
-            github: "https://github.com/ahmed-ben-salem",
-            twitter: "https://twitter.com/ahmed_ben_salem",
-            email: "ahmed@isaммmc.org"
+            linkedin: "https://www.linkedin.com/in/salma-msahli-718464321/",
+            email: "msahlisalma11@gmail.com",
+            instagram: "", // Add if available
+            website: "", // Add if available  
+            behance: "" // Add if available
         }
     },
     {
         id: 2,
-        name: "Fatma Trabelsi",
+        name: "Maram Ben Amna",
         position: "Vice President",
-        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
-        description: "Supporting strategic initiatives and member engagement. Specializes in project management and business development.",
+        image: "/ISAMM_Microsoft_Club/assets/images/managers/img2.jpeg",
+        description: "Supporting strategic initiatives and member engagement. Specializes in organizational development and team coordination.",
         social: {
-            linkedin: "https://www.linkedin.com/in/fatma-trabelsi",
-            github: "https://github.com/fatma-trabelsi",
-            twitter: "https://twitter.com/fatma_trabelsi",
-            email: "fatma@isaммmc.org"
+            linkedin: "https://www.linkedin.com/in/ben-amna-maram/",
+            email: "", // Add if available
+            instagram: "", // Add if available
+            website: "", // Add if available
+            behance: "" // Add if available
         }
     },
     {
         id: 3,
-        name: "Mohamed Gharbi",
+        name: "Yassine Jeridi",
         position: "Production Manager",
-        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
-        description: "Overseeing all production activities and content creation. Expert in multimedia production and event management.",
+        image: "/ISAMM_Microsoft_Club/assets/images/managers/img3.jpg",
+        description: "Overseeing all production activities and content creation. Expert in multimedia production and video editing with a passion for visual storytelling.",
         social: {
-            linkedin: "https://www.linkedin.com/in/mohamed-gharbi",
-            github: "https://github.com/mohamed-gharbi",
-            twitter: "https://twitter.com/mohamed_gharbi",
-            email: "mohamed@isaммmc.org"
+            linkedin: "https://www.linkedin.com/in/yassine-jeridi-8a3457311/",
+            email: "yassinejeridi23@gmail.com",
+            instagram: "", // Add if available
+            website: "", // Add if available
+            behance: "" // Add if available
         }
     },
     {
         id: 4,
-        name: "Salma Bouaziz",
-        position: "Project Manager",
-        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
-        description: "Managing technical projects and team coordination. Skilled in agile methodologies and software development.",
+        name: "Hamza Khlaf",
+        position: "Training Manager",
+        image: "/ISAMM_Microsoft_Club/assets/images/managers/img4.jpeg",
+        description: "Leading comprehensive training programs and educational initiatives. Expert in curriculum development and technical skills enhancement.",
         social: {
-            linkedin: "https://www.linkedin.com/in/salma-bouaziz",
-            github: "https://github.com/salma-bouaziz",
-            twitter: "https://twitter.com/salma_bouaziz",
-            email: "salma@isaммmc.org"
+            linkedin: "https://www.linkedin.com/in/hamza-khlaf/",
+            email: "contact@hamzakhlaf.com",
+            instagram: "", // Add if available
+            website: "", // Add if available - Could be hamzakhlaf.com
+            behance: "" // Add if available
         }
     },
     {
         id: 5,
-        name: "Youssef Mansouri",
-        position: "Sponsoring Manager",
-        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
-        description: "Building partnerships and managing sponsor relationships. Business-oriented with strong networking skills.",
+        name: "Youssef Namouchi",
+        position: "Project Manager",
+        image: "/ISAMM_Microsoft_Club/assets/images/managers/img5.jpeg",
+        description: "Managing technical projects and team coordination. Skilled in agile methodologies and software development lifecycle management.",
         social: {
-            linkedin: "https://www.linkedin.com/in/youssef-mansouri",
-            github: "https://github.com/youssef-mansouri",
-            twitter: "https://twitter.com/youssef_mansouri",
-            email: "youssef@isaммmc.org"
+            linkedin: "https://www.linkedin.com/in/youssef-namouchi-41a326241/",
+            email: "namouchiyoussef382@gmail.com",
+            instagram: "", // Add if available
+            website: "", // Add if available
+            behance: "" // Add if available
         }
     },
     {
         id: 6,
-        name: "Leila Jrad",
-        position: "Community Manager",
-        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
-        description: "Engaging with our community and managing social media presence. Expert in digital marketing and community building.",
+        name: "Achref Homri",
+        position: "Marketing Manager",
+        image: "/ISAMM_Microsoft_Club/assets/images/managers/img6.jpeg",
+        description: "Building brand awareness and managing marketing campaigns. Expert in digital marketing strategies and social media engagement.",
         social: {
-            linkedin: "https://www.linkedin.com/in/leila-jrad",
-            github: "https://github.com/leila-jrad",
-            twitter: "https://twitter.com/leila_jrad",
-            email: "leila@isaммmc.org"
+            linkedin: "https://www.linkedin.com/in/achref-homri-326a41310/",
+            email: "achreffhomri123@gmail.com",
+            instagram: "", // Add if available
+            website: "", // Add if available
+            behance: "" // Add if available
         }
     },
     {
         id: 7,
-        name: "Amira Ben Ali",
-        position: "Training Manager",
-        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
-        description: "Leading our comprehensive training programs and educational initiatives. Specializes in curriculum development and skills enhancement.",
+        name: "Islem Mohsni",
+        position: "Design Manager",
+        image: "/ISAMM_Microsoft_Club/assets/images/managers/img7.jpeg",
+        description: "Leading creative design initiatives and visual identity development. Specialized in UI/UX design and brand creative direction.",
         social: {
-            linkedin: "https://www.linkedin.com/in/amira-ben-ali",
-            github: "https://github.com/amira-ben-ali",
-            twitter: "https://twitter.com/amira_ben_ali",
-            email: "amira@isaммmc.org"
-        }
-    },
-    {
-        id: 8,
-        name: "Karim Zaidi",
-        position: "Logistics Manager",
-        image: "/assets/images/managers/img.jpg", // Using img7.jpeg since img8.jpeg doesn't exist yet
-        description: "Orchestrating seamless event planning and operational coordination. Expert in project management and resource optimization.",
-        social: {
-            linkedin: "https://www.linkedin.com/in/karim-zaidi",
-            github: "https://github.com/karim-zaidi",
-            twitter: "https://twitter.com/karim_zaidi",
-            email: "karim@isaммmc.org"
+            linkedin: "https://www.linkedin.com/in/islem-mohsni-426469327/",
+            email: "islemmohsni155@gmail.com",
+            instagram: "", // Add if available
+            website: "", // Add if available
+            behance: "" // Add if available - Perfect for a designer!
         }
     }
+
 ];
 
 export default teamData;
