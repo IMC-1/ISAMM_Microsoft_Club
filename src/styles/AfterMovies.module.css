@@ -50,6 +50,18 @@
     transform: scale(1.05);
 }
 
+/* Custom thumbnail styling */
+.thumbnailImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.videoCard:hover .thumbnailImage {
+    transform: scale(1.05);
+}
+
 .thumbnailPlaceholder {
     width: 100%;
     height: 100%;
@@ -95,6 +107,40 @@
     background: white;
     transform: translate(-50%, -50%) scale(1.1);
     box-shadow: 0 8px 25px rgba(0, 120, 212, 0.3);
+}
+
+/* Unavailable video styling */
+.videoCard.unavailable {
+    opacity: 0.7;
+    position: relative;
+}
+
+.videoCard.unavailable .thumbnailImage {
+    filter: grayscale(50%);
+}
+
+.comingSoonBadge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 120, 212, 0.9);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.comingSoonBadge svg {
+    font-size: 1.1rem;
+    opacity: 0.8;
 }
 
 .videoDuration {
@@ -234,6 +280,20 @@
     display: block;
 }
 
+/* YouTube Player Container */
+.youtubePlayerContainer {
+    position: relative;
+    width: 100%;
+    background: black;
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+}
+
+.youtubePlayer {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+}
+
 .videoDetails {
     padding: 25px;
     background: white;
@@ -361,6 +421,14 @@
     .fullVideo {
         max-height: 50vh;
     }
+
+    .youtubePlayerContainer {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .youtubePlayer {
+        border-radius: 10px 10px 0 0;
+    }
 }
 
 @media (max-width: 480px) {
@@ -408,6 +476,11 @@
     .fullVideo {
         max-height: 40vh;
     }
+
+    .comingSoonBadge {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
 }
 
 /* High contrast mode */
@@ -426,11 +499,13 @@
 
     .videoCard,
     .playButton,
-    .thumbnailVideo {
+    .thumbnailVideo,
+    .thumbnailImage {
         transition: none;
     }
 
-    .videoCard:hover .thumbnailVideo {
+    .videoCard:hover .thumbnailVideo,
+    .videoCard:hover .thumbnailImage {
         transform: none;
     }
 }
@@ -438,11 +513,12 @@
 /* Focus styles for accessibility */
 .playButton:focus,
 .closeButton:focus,
-.viewChannelBtn:focus {
+.viewChannelBtn:focus,
+.comingSoonBadge:focus {
     outline: 2px solid var(--ms-blue);
     outline-offset: 2px;
 }
 
 .fullVideo:focus {
-    outline: 2px solid var(--ms-blue);
+    outline: none;
 }

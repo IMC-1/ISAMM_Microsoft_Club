@@ -1,328 +1,193 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaPlay, FaCalendarAlt, FaEye, FaPause, FaInstagram } from 'react-icons/fa';
+import { FaPlay, FaCalendarAlt, FaEye, FaTimes, FaInstagram, FaUpload } from 'react-icons/fa';
+import YouTube from 'react-youtube';
 import styles from '../../styles/AfterMovies.module.css';
-
-// Import videos
-import {
-    video1,
-    video2,
-    video3,
-    video4,
-    video5,
-    video6,
-    video7,
-    video8,
-    video9,
-    video10,
-    video11,
-    video12
-} from '../../utils/importAfterMovies';
+import afterMoviesData from '../../data/afterMoviesData';
 
 const AfterMovies = () => {
     const [selectedVideo, setSelectedVideo] = useState(null);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const videoRef = useRef(null);
+    const [isPlayerReady, setIsPlayerReady] = useState(false);
 
-    const afterMovies = [
-        {
-            id: 1,
-            title: "2024 Year Recap",
-            date: "December 2024",
-            views: "3.2K",
-            duration: "2:45",
-            videoSrc: video1,
-            description: "A complete recap of our successful year 2024 with all major achievements and memorable moments."
+    // YouTube player options
+    const youtubeOpts = {
+        width: '100%',
+        height: '400',
+        playerVars: {
+            autoplay: 1,
+            controls: 1,
+            rel: 0, // Don't show related videos from other channels
+            modestbranding: 1, // Minimal YouTube branding
+            fs: 1, // Allow fullscreen
+            cc_load_policy: 0, // Don't show captions by default
+            iv_load_policy: 3, // Don't show annotations
         },
-        {
-            id: 2,
-            title: "Coding Universe Teaser",
-            date: "May 2023",
-            views: "2.8K",
-            duration: "1:30",
-            videoSrc: video2,
-            description: "Exciting teaser of our Coding Universe hackathon showcasing the competitive spirit and innovation."
-        },
-        {
-            id: 3,
-            title: "IMC Talk 2.0 Highlights",
-            date: "February 2024",
-            views: "4.1K",
-            duration: "5:20",
-            videoSrc: video3,
-            description: "Complete highlights from IMC Talk 2.0 featuring industry experts and inspiring tech discussions."
-        },
-        {
-            id: 4,
-            title: "IMC Talk 1.0 After Movie",
-            date: "November 2022",
-            views: "3.5K",
-            duration: "4:15",
-            videoSrc: video4,
-            description: "Our very first IMC Talk after movie capturing the essence of our inaugural tech conference."
-        },
-        {
-            id: 5,
-            title: "Level Up After Movie",
-            date: "January 2025",
-            views: "2.9K",
-            duration: "3:40",
-            videoSrc: video5,
-            description: "Professional development event highlights showcasing career advancement and skill building sessions."
-        },
-        {
-            id: 6,
-            title: "Level Up Teaser",
-            date: "January 2025",
-            views: "1.8K",
-            duration: "1:15",
-            videoSrc: video6,
-            description: "Promotional teaser for our Level Up event featuring exciting workshop previews."
-        },
-        {
-            id: 7,
-            title: "New Generation 2024-25",
-            date: "September 2024",
-            views: "2.3K",
-            duration: "2:20",
-            videoSrc: video7,
-            description: "Welcoming our new generation of members and showcasing fresh talent joining IMC family."
-        },
-        {
-            id: 8,
-            title: "Board Announcement Part 1",
-            date: "June 2023",
-            views: "1.9K",
-            duration: "3:10",
-            videoSrc: video8,
-            description: "First part of our board announcement for generation 2023-24 introducing new leadership."
-        },
-        {
-            id: 9,
-            title: "Board Announcement Part 2",
-            date: "June 2023",
-            views: "1.7K",
-            duration: "2:55",
-            videoSrc: video9,
-            description: "Second part of board announcement completing the introduction of our new executive team."
-        },
-        {
-            id: 10,
-            title: "SDGSOFT 1.0 Highlights",
-            date: "September 2023",
-            views: "3.8K",
-            duration: "4:30",
-            videoSrc: video10,
-            description: "Software development conference highlights focusing on sustainable development goals through tech."
-        },
-        {
-            id: 11,
-            title: "SDGSOFT 2.0 After Movie",
-            date: "October 2024",
-            views: "4.2K",
-            duration: "5:10",
-            videoSrc: video11,
-            description: "Advanced software development conference with AI integration and sustainable tech practices."
-        },
-        {
-            id: 12,
-            title: "Board Announcement Teaser",
-            date: "June 2023",
-            views: "1.4K",
-            duration: "0:45",
-            videoSrc: video12,
-            description: "Exciting teaser building anticipation for our board announcement of generation 2023-24."
-        }
-    ];
+    };
 
     const openVideoModal = (video) => {
-        setSelectedVideo(video);
-        setIsPlaying(false);
+        if (video.isAvailable && video.youtubeId) {
+            setSelectedVideo(video);
+            setIsPlayerReady(false);
+        }
     };
 
     const closeVideoModal = () => {
-        if (videoRef.current) {
-            videoRef.current.pause();
-        }
         setSelectedVideo(null);
-        setIsPlaying(false);
+        setIsPlayerReady(false);
     };
 
-    const togglePlayPause = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
+    const onPlayerReady = (event) => {
+        setIsPlayerReady(true);
     };
 
-    const handleVideoEnded = () => {
-        setIsPlaying(false);
+    const onPlayerStateChange = (event) => {
+        // Handle player state changes if needed
     };
 
     // Handle keyboard navigation
     useEffect(() => {
         const handleKeyPress = (e) => {
-            if (selectedVideo) {
-                if (e.key === 'Escape') closeVideoModal();
-                if (e.key === ' ') {
-                    e.preventDefault();
-                    togglePlayPause();
-                }
+            if (selectedVideo && e.key === 'Escape') {
+                closeVideoModal();
             }
         };
 
         window.addEventListener('keydown', handleKeyPress);
         return () => window.removeEventListener('keydown', handleKeyPress);
-    }, [selectedVideo, isPlaying]);
+    }, [selectedVideo]);
 
     const handleInstagramClick = () => {
         window.open('https://www.instagram.com/isamm_microsoft_club/', '_blank', 'noopener,noreferrer');
     };
 
     return (
-        <section className={styles.afterMovies}>
+        <div className={styles.afterMovies}>
             <div className="container">
-                <motion.h2
+                <motion.div
                     initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="section-title"
+                    className={styles.sectionHeader}
                 >
-                    After Movies
-                </motion.h2>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className={styles.sectionDescription}
-                >
-                    Relive the best moments from our events and activities through these
-                    carefully crafted after movies that capture the spirit of innovation and community.
-                </motion.p>
+                    <h2 className={styles.sectionTitle}>After Movies</h2>
+                    <p className={styles.sectionDescription}>
+                        Relive the best moments from our events and activities through these
+                        carefully crafted after movies that capture the spirit of innovation and community.
+                    </p>
+                </motion.div>
 
                 <div className={styles.videosGrid}>
-                    {afterMovies.map((video, index) => (
+                    {afterMoviesData.map((video, index) => (
                         <motion.div
                             key={video.id}
                             initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className={styles.videoCard}
-                            whileHover={{ y: -5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: index * 0.1 }}
+                            className={`${styles.videoCard} ${!video.isAvailable ? styles.unavailable : ''}`}
                         >
                             <div className={styles.videoThumbnail}>
-                                <video
-                                    className={styles.thumbnailVideo}
-                                    muted
-                                    preload="metadata"
-                                    onLoadedMetadata={(e) => {
-                                        e.target.currentTime = 5; // Show frame at 5 seconds as thumbnail
-                                    }}
-                                >
-                                    <source src={video.videoSrc} type="video/mp4" />
-                                </video>
+                                {/* Custom thumbnail image */}
+                                <img
+                                    src={video.thumbnail}
+                                    alt={video.title}
+                                    className={styles.thumbnailImage}
+                                    loading="lazy"
+                                />
+
                                 <div className={styles.videoOverlay} />
-                                <button
-                                    className={styles.playButton}
-                                    onClick={() => openVideoModal(video)}
-                                >
-                                    <FaPlay />
-                                </button>
-                                <div className={styles.videoDuration}>
+
+                                {video.isAvailable ? (
+                                    <button
+                                        className={styles.playButton}
+                                        onClick={() => openVideoModal(video)}
+                                        aria-label={`Play ${video.title}`}
+                                    >
+                                        <FaPlay />
+                                    </button>
+                                ) : (
+                                    <div className={styles.comingSoonBadge}>
+                                        <FaUpload />
+                                        <span>Coming Soon</span>
+                                    </div>
+                                )}
+
+                                <span className={styles.videoDuration}>
                                     {video.duration}
-                                </div>
+                                </span>
                             </div>
 
                             <div className={styles.videoInfo}>
                                 <h3 className={styles.videoTitle}>{video.title}</h3>
                                 <p className={styles.videoDescription}>{video.description}</p>
-
                                 <div className={styles.videoMeta}>
-                                    <div className={styles.metaItem}>
+                                    <span className={styles.metaItem}>
                                         <FaCalendarAlt />
-                                        <span>{video.date}</span>
-                                    </div>
-                                    <div className={styles.metaItem}>
+                                        {video.date}
+                                    </span>
+                                    <span className={styles.metaItem}>
                                         <FaEye />
-                                        <span>{video.views} views</span>
-                                    </div>
+                                        {video.views} views
+                                    </span>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    viewport={{ once: true }}
-                    className={styles.videosFooter}
-                >
-                    <button className={styles.viewChannelBtn} onClick={handleInstagramClick}>
+                <div className={styles.videosFooter}>
+                    <button
+                        className={styles.viewChannelBtn}
+                        onClick={handleInstagramClick}
+                    >
                         <FaInstagram />
                         Visit Our Instagram for More Videos
                     </button>
-                </motion.div>
+                </div>
 
-                {/* Video Modal */}
+                {/* YouTube Video Modal */}
                 {selectedVideo && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className={styles.videoModal}
-                        onClick={closeVideoModal}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.5 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.5 }}
+                    <div className={styles.videoModal} onClick={closeVideoModal}>
+                        <div
                             className={styles.modalContent}
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
                                 className={styles.closeButton}
                                 onClick={closeVideoModal}
+                                aria-label="Close video"
                             >
-                                ×
+                                <FaTimes />
                             </button>
 
-                            <div className={styles.videoPlayer}>
-                                <video
-                                    ref={videoRef}
-                                    className={styles.fullVideo}
-                                    controls
-                                    onEnded={handleVideoEnded}
-                                    onPlay={() => setIsPlaying(true)}
-                                    onPause={() => setIsPlaying(false)}
-                                >
-                                    <source src={selectedVideo.videoSrc} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
+                            <div className={styles.youtubePlayerContainer}>
+                                <YouTube
+                                    videoId={selectedVideo.youtubeId}
+                                    opts={youtubeOpts}
+                                    onReady={onPlayerReady}
+                                    onStateChange={onPlayerStateChange}
+                                    className={styles.youtubePlayer}
+                                />
                             </div>
 
                             <div className={styles.videoDetails}>
                                 <h3 className={styles.modalVideoTitle}>{selectedVideo.title}</h3>
                                 <p className={styles.modalVideoDescription}>{selectedVideo.description}</p>
                                 <div className={styles.modalVideoMeta}>
-                                    <span><FaCalendarAlt /> {selectedVideo.date}</span>
-                                    <span><FaEye /> {selectedVideo.views} views</span>
+                                    <span>
+                                        <FaCalendarAlt />
+                                        {selectedVideo.date}
+                                    </span>
+                                    <span>
+                                        <FaEye />
+                                        {selectedVideo.views} views
+                                    </span>
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
                 )}
             </div>
-        </section>
+        </div>
     );
 };
 
