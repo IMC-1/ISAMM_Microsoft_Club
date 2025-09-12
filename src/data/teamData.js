@@ -4,7 +4,7 @@ const teamData = [
         id: 1,
         name: "Ahmed Ben Salem",
         position: "President",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
+        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
         description: "Leading the club with passion for technology and innovation. Computer Science student with expertise in full-stack development.",
         social: {
             linkedin: "https://www.linkedin.com/in/ahmed-ben-salem",
@@ -17,7 +17,7 @@ const teamData = [
         id: 2,
         name: "Fatma Trabelsi",
         position: "Vice President",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
+        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
         description: "Supporting strategic initiatives and member engagement. Specializes in project management and business development.",
         social: {
             linkedin: "https://www.linkedin.com/in/fatma-trabelsi",
@@ -30,7 +30,7 @@ const teamData = [
         id: 3,
         name: "Mohamed Gharbi",
         position: "Production Manager",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
+        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
         description: "Overseeing all production activities and content creation. Expert in multimedia production and event management.",
         social: {
             linkedin: "https://www.linkedin.com/in/mohamed-gharbi",
@@ -43,7 +43,7 @@ const teamData = [
         id: 4,
         name: "Salma Bouaziz",
         position: "Project Manager",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
+        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
         description: "Managing technical projects and team coordination. Skilled in agile methodologies and software development.",
         social: {
             linkedin: "https://www.linkedin.com/in/salma-bouaziz",
@@ -56,7 +56,7 @@ const teamData = [
         id: 5,
         name: "Youssef Mansouri",
         position: "Sponsoring Manager",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
+        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
         description: "Building partnerships and managing sponsor relationships. Business-oriented with strong networking skills.",
         social: {
             linkedin: "https://www.linkedin.com/in/youssef-mansouri",
@@ -69,7 +69,7 @@ const teamData = [
         id: 6,
         name: "Leila Jrad",
         position: "Community Manager",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
+        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
         description: "Engaging with our community and managing social media presence. Expert in digital marketing and community building.",
         social: {
             linkedin: "https://www.linkedin.com/in/leila-jrad",
@@ -82,7 +82,7 @@ const teamData = [
         id: 7,
         name: "Amira Ben Ali",
         position: "Training Manager",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
+        image: "/assets/images/managers/img.jpg", // Changed from .jpg to .jpeg
         description: "Leading our comprehensive training programs and educational initiatives. Specializes in curriculum development and skills enhancement.",
         social: {
             linkedin: "https://www.linkedin.com/in/amira-ben-ali",
@@ -95,7 +95,7 @@ const teamData = [
         id: 8,
         name: "Karim Zaidi",
         position: "Logistics Manager",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img.jpg", // Using img7.jpeg since img8.jpeg doesn't exist yet
+        image: "/assets/images/managers/img.jpg", // Using img7.jpeg since img8.jpeg doesn't exist yet
         description: "Orchestrating seamless event planning and operational coordination. Expert in project management and resource optimization.",
         social: {
             linkedin: "https://www.linkedin.com/in/karim-zaidi",

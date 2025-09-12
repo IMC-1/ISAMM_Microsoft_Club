@@ -9,7 +9,7 @@ import './styles/globals.css';
 
 function App() {
   return (
-    <Router basename="/ISAMM_Microsoft_Club">
+    <Router>
       <div className="App">
         <Navbar />
         <Routes>
