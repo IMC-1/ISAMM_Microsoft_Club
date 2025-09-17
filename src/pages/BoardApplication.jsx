@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from '../styles/BoardApplication.module.css';
+import { sendBoardApplicationNotification } from '../services/telegramService';
+import { positions, technicalSkillOptions, positionQuestions } from '../data/BoardApplicationQuestions';
 
 const BoardApplication = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +28,7 @@ const BoardApplication = () => {
         portfolioLinks: '',
         achievements: '',
 
-        // Position-Specific Questions (will be populated based on selected position)
+        // Position-Specific Questions
         specificAnswers: {},
         secondChoiceAnswers: {},
 
@@ -35,96 +37,12 @@ const BoardApplication = () => {
         visionForClub: '',
         availabilityCommitment: '',
 
-        // References
-        reference1Name: '',
-        reference1Contact: '',
-        reference1Relationship: '',
-        reference2Name: '',
-        reference2Contact: '',
-        reference2Relationship: '',
-
         // Agreement
         agreement: false
     });
 
-    const positions = [
-        'President',
-        'Vice President',
-        'Production Manager',
-        'Project Manager',
-        'Sponsoring Manager',
-        'Community Manager',
-        'Training Manager',
-        'Logistics Manager'
-    ];
-
-    const technicalSkillOptions = [
-        'Web Development', 'Mobile Development', 'UI/UX Design', 'Graphic Design',
-        'Video Editing', 'Photography', 'Digital Marketing', 'Social Media Management',
-        'Project Management', 'Event Planning', 'Public Speaking', 'Content Creation',
-        'Data Analysis', 'Microsoft Office Suite', 'Adobe Creative Suite', 'Figma',
-        'Programming Languages', 'Cloud Computing', 'Database Management', 'Other'
-    ];
-
-    // Position-specific questions
-    const positionQuestions = {
-        'President': [
-            'What is your vision for the future of ISAMM Microsoft Club?',
-            'How would you handle conflicts within the executive board?',
-            'Describe a situation where you successfully led a team through a challenging project.',
-            'What strategies would you implement to increase club membership and engagement?',
-            'How do you plan to maintain relationships with university administration and external partners?'
-        ],
-        'Vice President': [
-            'How would you support the President in achieving the club\'s goals?',
-            'What role do you see yourself playing in strategic decision-making?',
-            'Describe your experience with project coordination and team management.',
-            'How would you handle situations where you disagree with the President\'s decisions?',
-            'What initiatives would you propose to improve club operations?'
-        ],
-        'Production Manager': [
-            'Describe your experience with video production, photography, or content creation.',
-            'What software and tools are you proficient in for multimedia production?',
-            'How would you ensure consistent branding across all club content?',
-            'Describe a creative project you\'ve managed from concept to completion.',
-            'How would you coordinate with other teams to create promotional materials for events?'
-        ],
-        'Project Manager': [
-            'What project management methodologies are you familiar with?',
-            'Describe a complex project you\'ve successfully managed.',
-            'How do you handle project deadlines and resource constraints?',
-            'What tools do you use for project planning and team collaboration?',
-            'How would you ensure quality deliverables while maintaining timelines?'
-        ],
-        'Sponsoring Manager': [
-            'Describe your experience with business development or partnership building.',
-            'How would you approach potential sponsors and present the club\'s value proposition?',
-            'What strategies would you use to maintain long-term sponsor relationships?',
-            'How comfortable are you with presenting and negotiating?',
-            'What do you think makes a successful sponsorship proposal?'
-        ],
-        'Community Manager': [
-            'Describe your experience with social media management and digital marketing.',
-            'How would you increase community engagement across different platforms?',
-            'What content strategies would you implement to attract and retain followers?',
-            'How do you measure the success of community engagement initiatives?',
-            'Describe a time when you successfully built or grew an online community.'
-        ],
-        'Training Manager': [
-            'Describe your experience with teaching, training, or curriculum development.',
-            'What topics would you prioritize in the club\'s training programs?',
-            'How would you assess the effectiveness of training sessions?',
-            'What methods do you use to accommodate different learning styles?',
-            'How would you coordinate with external trainers and certification bodies?'
-        ],
-        'Logistics Manager': [
-            'Describe your experience with event planning and coordination.',
-            'How do you approach budget management for events and activities?',
-            'What contingency planning strategies do you employ?',
-            'How would you coordinate with venues, vendors, and service providers?',
-            'Describe a challenging logistical problem you\'ve solved.'
-        ]
-    };
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -162,10 +80,45 @@ const BoardApplication = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Board Application submitted:', formData);
-        alert('Thank you for your application! We will review it and contact you within 2 weeks.');
+        setIsSubmitting(true);
+        setSubmitStatus({ type: '', message: '' });
+
+        try {
+            // Send Telegram notification with all form data
+            const telegramSent = await sendBoardApplicationNotification(formData);
+
+            if (telegramSent) {
+                setSubmitStatus({
+                    type: 'success',
+                    message: 'Thank you for your application! We will review it and contact you within 2 weeks. 🎉'
+                });
+
+                // Reset form after successful submission
+                setTimeout(() => {
+                    setFormData({
+                        fullName: '', dateOfBirth: '', gender: '', university: '', yearOfStudy: '',
+                        fieldOfStudy: '', phoneNumber: '', email: '', linkedinProfile: '',
+                        desiredPosition: '', secondChoicePosition: '', previousLeadershipExperience: '',
+                        relevantSkills: '', technicalSkills: [], portfolioLinks: '', achievements: '',
+                        specificAnswers: {}, secondChoiceAnswers: {}, whyThisPosition: '',
+                        visionForClub: '', availabilityCommitment: '', agreement: false
+                    });
+                    setSubmitStatus({ type: '', message: '' });
+                }, 5000);
+            } else {
+                throw new Error('Failed to send application notification');
+            }
+        } catch (error) {
+            console.error('Application submission error:', error);
+            setSubmitStatus({
+                type: 'error',
+                message: 'Failed to submit application. Please try again or contact support.'
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -182,6 +135,17 @@ const BoardApplication = () => {
                         Join the leadership team of ISAMM Microsoft Club and make a lasting impact on our community!
                     </p>
                 </motion.div>
+
+                {/* Submit Status Message */}
+                {submitStatus.message && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className={`${styles.statusMessage} ${styles[submitStatus.type]}`}
+                    >
+                        {submitStatus.message}
+                    </motion.div>
+                )}
 
                 <motion.form
                     initial={{ opacity: 0, y: 50 }}
@@ -203,6 +167,7 @@ const BoardApplication = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -216,6 +181,7 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     required
+                                    disabled={isSubmitting}
                                 />
                             </div>
 
@@ -227,12 +193,11 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     required
+                                    disabled={isSubmitting}
                                 >
                                     <option value="">Select Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
-                                    <option value="Prefer not to say">Prefer not to say</option>
                                 </select>
                             </div>
                         </div>
@@ -246,6 +211,7 @@ const BoardApplication = () => {
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -258,6 +224,7 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     required
+                                    disabled={isSubmitting}
                                 >
                                     <option value="">Select Year</option>
                                     <option value="1st Year">1st Year</option>
@@ -278,6 +245,7 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     required
+                                    disabled={isSubmitting}
                                 />
                             </div>
                         </div>
@@ -292,6 +260,7 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     required
+                                    disabled={isSubmitting}
                                 />
                             </div>
 
@@ -304,6 +273,7 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     required
+                                    disabled={isSubmitting}
                                 />
                             </div>
                         </div>
@@ -311,14 +281,18 @@ const BoardApplication = () => {
                         <div className={styles.inputGroup}>
                             <label className={styles.label}>LinkedIn Profile *</label>
                             <input
-                                type="url"
+                                type="text"
                                 name="linkedinProfile"
                                 value={formData.linkedinProfile}
                                 onChange={handleChange}
                                 className={styles.input}
                                 required
-                                placeholder="https://www.linkedin.com/in/yourprofile"
+                                placeholder="https://www.linkedin.com/in/yourprofile or your LinkedIn username"
+                                disabled={isSubmitting}
                             />
+                            <small className={styles.inputHint}>
+                                We prefer a direct link to your LinkedIn profile, but you can also provide your username.
+                            </small>
                         </div>
                     </div>
 
@@ -335,6 +309,7 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     required
+                                    disabled={isSubmitting}
                                 >
                                     <option value="">Select Position</option>
                                     {positions.map(position => (
@@ -351,6 +326,7 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.input}
                                     required
+                                    disabled={isSubmitting}
                                 >
                                     <option value="">Select Second Choice</option>
                                     {positions.filter(pos => pos !== formData.desiredPosition).map(position => (
@@ -379,9 +355,10 @@ const BoardApplication = () => {
                                 value={formData.previousLeadershipExperience}
                                 onChange={handleChange}
                                 className={styles.textarea}
-                                rows="4"
+                                rows={4}
                                 required
                                 placeholder="Describe your leadership roles, responsibilities, and achievements..."
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -392,9 +369,10 @@ const BoardApplication = () => {
                                 value={formData.relevantSkills}
                                 onChange={handleChange}
                                 className={styles.textarea}
-                                rows="3"
+                                rows={3}
                                 required
                                 placeholder="List your key skills relevant to your desired positions..."
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -410,6 +388,7 @@ const BoardApplication = () => {
                                             checked={formData.technicalSkills.includes(skill)}
                                             onChange={handleChange}
                                             className={styles.checkbox}
+                                            disabled={isSubmitting}
                                         />
                                         {skill}
                                     </label>
@@ -424,8 +403,9 @@ const BoardApplication = () => {
                                 value={formData.portfolioLinks}
                                 onChange={handleChange}
                                 className={styles.textarea}
-                                rows="2"
+                                rows={2}
                                 placeholder="GitHub, portfolio website, projects, etc."
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -436,8 +416,9 @@ const BoardApplication = () => {
                                 value={formData.achievements}
                                 onChange={handleChange}
                                 className={styles.textarea}
-                                rows="3"
+                                rows={3}
                                 placeholder="Awards, recognitions, successful projects, etc."
+                                disabled={isSubmitting}
                             />
                         </div>
                     </div>
@@ -445,25 +426,25 @@ const BoardApplication = () => {
                     {/* Primary Position-Specific Questions */}
                     {formData.desiredPosition && positionQuestions[formData.desiredPosition] && (
                         <div className={styles.formSection}>
-                            <h2 className={styles.sectionTitle}>
-                                {formData.desiredPosition} - Specific Questions
-                            </h2>
+                            <h2 className={styles.sectionTitle}>{formData.desiredPosition} - Specific Questions</h2>
                             <p className={styles.sectionNote}>
                                 Please answer these questions specifically for your desired position: <strong>{formData.desiredPosition}</strong>
                             </p>
+
                             {positionQuestions[formData.desiredPosition].map((question, index) => (
                                 <div key={index} className={styles.inputGroup}>
                                     <label className={styles.label}>
-                                        {index + 1}. {question} *
+                                        {index + 1}. {question}
                                     </label>
                                     <textarea
                                         name={`specificAnswer_${index}`}
                                         value={formData.specificAnswers[index] || ''}
                                         onChange={handleChange}
                                         className={styles.textarea}
-                                        rows="4"
+                                        rows={4}
                                         required
                                         placeholder="Please provide a detailed answer..."
+                                        disabled={isSubmitting}
                                     />
                                 </div>
                             ))}
@@ -473,25 +454,25 @@ const BoardApplication = () => {
                     {/* Second Choice Position-Specific Questions */}
                     {formData.secondChoicePosition && positionQuestions[formData.secondChoicePosition] && (
                         <div className={styles.formSection}>
-                            <h2 className={styles.sectionTitle}>
-                                {formData.secondChoicePosition} - Specific Questions
-                            </h2>
+                            <h2 className={styles.sectionTitle}>{formData.secondChoicePosition} - Specific Questions</h2>
                             <p className={styles.sectionNote}>
                                 Please answer these questions specifically for your second choice position: <strong>{formData.secondChoicePosition}</strong>
                             </p>
+
                             {positionQuestions[formData.secondChoicePosition].map((question, index) => (
                                 <div key={index} className={styles.inputGroup}>
                                     <label className={styles.label}>
-                                        {index + 1}. {question} *
+                                        {index + 1}. {question}
                                     </label>
                                     <textarea
                                         name={`secondChoiceAnswer_${index}`}
                                         value={formData.secondChoiceAnswers[index] || ''}
                                         onChange={handleChange}
                                         className={styles.textarea}
-                                        rows="4"
+                                        rows={4}
                                         required
                                         placeholder="Please provide a detailed answer for this second choice position..."
+                                        disabled={isSubmitting}
                                     />
                                 </div>
                             ))}
@@ -509,9 +490,10 @@ const BoardApplication = () => {
                                 value={formData.whyThisPosition}
                                 onChange={handleChange}
                                 className={styles.textarea}
-                                rows="4"
+                                rows={4}
                                 required
                                 placeholder="Explain your motivation for both your desired position and second choice position..."
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -522,9 +504,10 @@ const BoardApplication = () => {
                                 value={formData.visionForClub}
                                 onChange={handleChange}
                                 className={styles.textarea}
-                                rows="4"
+                                rows={4}
                                 required
                                 placeholder="Share your vision for the future of ISAMM Microsoft Club and how you would contribute in either role..."
+                                disabled={isSubmitting}
                             />
                         </div>
 
@@ -535,100 +518,11 @@ const BoardApplication = () => {
                                 value={formData.availabilityCommitment}
                                 onChange={handleChange}
                                 className={styles.textarea}
-                                rows="3"
+                                rows={3}
                                 required
                                 placeholder="Describe your availability and how many hours per week you can commit to executive board responsibilities..."
+                                disabled={isSubmitting}
                             />
-                        </div>
-                    </div>
-
-                    {/* References */}
-                    <div className={styles.formSection}>
-                        <h2 className={styles.sectionTitle}>References</h2>
-                        <p className={styles.sectionNote}>
-                            Please provide two references (professors, previous employers, mentors, etc.)
-                        </p>
-
-                        <div className={styles.referenceContainer}>
-                            <h3 className={styles.referenceTitle}>Reference 1</h3>
-                            <div className={styles.inputRow}>
-                                <div className={styles.inputGroup}>
-                                    <label className={styles.label}>Full Name *</label>
-                                    <input
-                                        type="text"
-                                        name="reference1Name"
-                                        value={formData.reference1Name}
-                                        onChange={handleChange}
-                                        className={styles.input}
-                                        required
-                                    />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <label className={styles.label}>Contact Information *</label>
-                                    <input
-                                        type="text"
-                                        name="reference1Contact"
-                                        value={formData.reference1Contact}
-                                        onChange={handleChange}
-                                        className={styles.input}
-                                        required
-                                        placeholder="Email or phone number"
-                                    />
-                                </div>
-                            </div>
-                            <div className={styles.inputGroup}>
-                                <label className={styles.label}>Relationship to You *</label>
-                                <input
-                                    type="text"
-                                    name="reference1Relationship"
-                                    value={formData.reference1Relationship}
-                                    onChange={handleChange}
-                                    className={styles.input}
-                                    required
-                                    placeholder="e.g., Professor, Manager, Mentor"
-                                />
-                            </div>
-                        </div>
-
-                        <div className={styles.referenceContainer}>
-                            <h3 className={styles.referenceTitle}>Reference 2</h3>
-                            <div className={styles.inputRow}>
-                                <div className={styles.inputGroup}>
-                                    <label className={styles.label}>Full Name *</label>
-                                    <input
-                                        type="text"
-                                        name="reference2Name"
-                                        value={formData.reference2Name}
-                                        onChange={handleChange}
-                                        className={styles.input}
-                                        required
-                                    />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <label className={styles.label}>Contact Information *</label>
-                                    <input
-                                        type="text"
-                                        name="reference2Contact"
-                                        value={formData.reference2Contact}
-                                        onChange={handleChange}
-                                        className={styles.input}
-                                        required
-                                        placeholder="Email or phone number"
-                                    />
-                                </div>
-                            </div>
-                            <div className={styles.inputGroup}>
-                                <label className={styles.label}>Relationship to You *</label>
-                                <input
-                                    type="text"
-                                    name="reference2Relationship"
-                                    value={formData.reference2Relationship}
-                                    onChange={handleChange}
-                                    className={styles.input}
-                                    required
-                                    placeholder="e.g., Professor, Manager, Mentor"
-                                />
-                            </div>
                         </div>
                     </div>
 
@@ -645,20 +539,25 @@ const BoardApplication = () => {
                                     onChange={handleChange}
                                     className={styles.checkbox}
                                     required
+                                    disabled={isSubmitting}
                                 />
                                 <span className={styles.agreementText}>
                                     I understand that serving on the executive board requires significant time commitment and dedication.
                                     I agree to fulfill my responsibilities for either my desired position or second choice position,
-                                    attend regular meetings, and contribute actively to the club's mission. All information provided
-                                    in this application is accurate and complete. I authorize the club to contact my references for verification.
+                                    attend regular meetings, and contribute actively to the club's mission.
+                                    All information provided in this application is accurate and complete.
                                 </span>
                             </label>
                         </div>
                     </div>
 
                     <div className={styles.submitSection}>
-                        <button type="submit" className={styles.submitButton}>
-                            Submit Application
+                        <button
+                            type="submit"
+                            className={styles.submitButton}
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? 'Submitting...' : 'Submit Application'}
                         </button>
                     </div>
                 </motion.form>

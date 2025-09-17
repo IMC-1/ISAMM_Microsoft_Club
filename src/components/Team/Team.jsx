@@ -149,7 +149,7 @@ const Team = () => {
                         We're looking for passionate leaders to join our executive team and help shape the future
                         of ISAMM Microsoft Club. Take the next step in your leadership journey!
                     </p>
-                    <Link to="/join" className={styles.joinButton}>
+                    <Link to="/BoardApplication" className={styles.joinButton}>
                         Apply Now
                     </Link>
                 </motion.div>
