@@ -22,7 +22,7 @@ const teamData = [
         description: "Supporting strategic initiatives and member engagement. Specializes in organizational development and team coordination.",
         social: {
             linkedin: "https://www.linkedin.com/in/ben-amna-maram/",
-            email: "", // Add if available
+            email: "benamnamaram@gmail.com", // Add if available
             instagram: "", // Add if available
             website: "", // Add if available
             behance: "" // Add if available
@@ -38,7 +38,7 @@ const teamData = [
             linkedin: "https://www.linkedin.com/in/yassine-jeridi-8a3457311/",
             email: "yassinejeridi23@gmail.com",
             instagram: "", // Add if available
-            website: "", // Add if available
+            website: "https://yassinejeridi.github.io/pexa/", // Add if available
             behance: "" // Add if available
         }
     },
@@ -52,7 +52,7 @@ const teamData = [
             linkedin: "https://www.linkedin.com/in/hamza-khlaf/",
             email: "contact@hamzakhlaf.com",
             instagram: "", // Add if available
-            website: "", // Add if available - Could be hamzakhlaf.com
+            website: "https://hamzakhlaf.com/", // Add if available - Could be hamzakhlaf.com
             behance: "" // Add if available
         }
     },

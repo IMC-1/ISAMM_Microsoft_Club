@@ -6,10 +6,10 @@ const afterMoviesData = [
         date: "December 2024",
         views: "3.2K",
         duration: "2:45",
-        youtubeId: "", // Add YouTube ID when uploaded
+        youtubeId: "YllFeO4sBcw",
         thumbnail: "/ISAMM_Microsoft_Club/assets/images/thumbnails/23 24 RECAP.png",
         description: "A complete recap of our successful year 2024 with all major achievements and memorable moments.",
-        isAvailable: false // Will be true when YouTube ID is added
+        isAvailable: true
     },
     {
         id: 2,
@@ -28,10 +28,10 @@ const afterMoviesData = [
         date: "February 2024",
         views: "4.1K",
         duration: "5:20",
-        youtubeId: "", // Add YouTube ID when uploaded
+        youtubeId: "w5IuwGwL-Gc",
         thumbnail: "/ISAMM_Microsoft_Club/assets/images/thumbnails/IMC TALK 2.0.png",
         description: "Complete highlights from IMC Talk 2.0 featuring industry experts and inspiring tech discussions.",
-        isAvailable: false
+        isAvailable: true
     },
     {
         id: 4,
@@ -50,10 +50,10 @@ const afterMoviesData = [
         date: "January 2025",
         views: "2.9K",
         duration: "3:40",
-        youtubeId: "", // Add YouTube ID when uploaded
+        youtubeId: "fp2Wf_zBBA8",
         thumbnail: "/ISAMM_Microsoft_Club/assets/images/thumbnails/level up 1.0.png",
         description: "Professional development event highlights showcasing career advancement and skill building sessions.",
-        isAvailable: false
+        isAvailable: true
     },
     {
         id: 6,
@@ -61,10 +61,10 @@ const afterMoviesData = [
         date: "January 2025",
         views: "1.8K",
         duration: "1:15",
-        youtubeId: "", // Add YouTube ID when uploaded
+        youtubeId: "yf4sDjHvOkE",
         thumbnail: "/ISAMM_Microsoft_Club/assets/images/thumbnails/teaser level up 1.0.png",
         description: "Promotional teaser for our Level Up event featuring exciting workshop previews.",
-        isAvailable: false
+        isAvailable: true
     },
     {
         id: 7,
@@ -105,10 +105,10 @@ const afterMoviesData = [
         date: "September 2023",
         views: "3.8K",
         duration: "4:30",
-        youtubeId: "", // Add YouTube ID when uploaded
+        youtubeId: "JzhdOJbQ4ug",
         thumbnail: "/ISAMM_Microsoft_Club/assets/images/thumbnails/sdgsoft 1.0.png",
         description: "Software development conference highlights focusing on sustainable development goals through tech.",
-        isAvailable: false
+        isAvailable: true
     },
     {
         id: 11,
@@ -116,10 +116,10 @@ const afterMoviesData = [
         date: "October 2024",
         views: "4.2K",
         duration: "5:10",
-        youtubeId: "", // Add YouTube ID when uploaded
+        youtubeId: "_WQbZBi1WHg", 
         thumbnail: "/ISAMM_Microsoft_Club/assets/images/thumbnails/sdgsoft 2.0.png",
         description: "Advanced software development conference with AI integration and sustainable tech practices.",
-        isAvailable: false
+        isAvailable: true
     },
     {
         id: 12,

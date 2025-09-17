@@ -35,7 +35,7 @@
 
 .memberImageContainer {
     position: relative;
-    height: 300px;
+    height: 350px;
     overflow: hidden;
 }
 
@@ -239,7 +239,7 @@
     }
 
     .memberImageContainer {
-        height: 250px;
+        height: 350px;
     }
 
     .memberInfo {
@@ -279,7 +279,7 @@
     }
 
     .memberImageContainer {
-        height: 220px;
+        height: 320px;
     }
 
     .memberInfo {
