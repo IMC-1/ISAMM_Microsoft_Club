@@ -39,7 +39,11 @@ const JoinUs = () => {
             sponsoringTeam: '',
             productionTeam: '',
             projectTeam: '',
+<<<<<<< HEAD
             marketingTeam: ''
+=======
+           marketingTeam: ''
+>>>>>>> a9c28f82fc9246553dd9c4eb77419c1e485b6e2b
         },
 
         // Additional Questions
@@ -63,7 +67,11 @@ const JoinUs = () => {
         { key: 'sponsoringTeam', name: '🤝 Sponsoring Team', desc: 'Partnerships, business development, and negotiations' },
         { key: 'productionTeam', name: '🎬 Production Team', desc: 'Video editing, filming, and content creation' },
         { key: 'projectTeam', name: '💻 Project Team', desc: 'Web development, programming, and technical solutions' },
+<<<<<<< HEAD
         { key: 'marketingTeam', name: '📋 marketing Team', desc: 'Event planning, coordination, and project management' }
+=======
+        { key: 'marketingTeam', name: '📋marketing Team', desc: 'Event planning, coordination, and project management' }
+>>>>>>> a9c28f82fc9246553dd9c4eb77419c1e485b6e2b
     ];
 
     // Function to validate unique rankings
@@ -232,7 +240,11 @@ const JoinUs = () => {
                     linkedinProfile: '', state: '', howDidYouHear: '', howDidYouHearOther: '',
                     previousClubExperience: '', leadershipExperience: '', portfolioLinks: '',
                     interests: '', whyJoin: '', whatToAchieve: '', timeCommitment: '', teamRankings: {
+<<<<<<< HEAD
                         designTeam: '', sponsoringTeam: '', productionTeam: '', projectTeam: '', marketingTeam: ''
+=======
+                        designTeam: '', sponsoringTeam: '', productionTeam: '', projectTeam: '',marketingTeam: ''
+>>>>>>> a9c28f82fc9246553dd9c4eb77419c1e485b6e2b
                     }, biggestStrength: '', skillToLearn: '', weekendAvailability: '',
                     schedulingConflicts: '', excitementLevel: '', additionalComments: '', agreement: false
                 });
