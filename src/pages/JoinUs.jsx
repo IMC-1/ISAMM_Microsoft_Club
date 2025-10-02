@@ -39,7 +39,7 @@ const JoinUs = () => {
             sponsoringTeam: '',
             productionTeam: '',
             projectTeam: '',
-            logisticsTeam: ''
+           marketingTeam: ''
         },
 
         // Additional Questions
@@ -63,7 +63,7 @@ const JoinUs = () => {
         { key: 'sponsoringTeam', name: '🤝 Sponsoring Team', desc: 'Partnerships, business development, and negotiations' },
         { key: 'productionTeam', name: '🎬 Production Team', desc: 'Video editing, filming, and content creation' },
         { key: 'projectTeam', name: '💻 Project Team', desc: 'Web development, programming, and technical solutions' },
-        { key: 'logisticsTeam', name: '📋 Logistics Team', desc: 'Event planning, coordination, and project management' }
+        { key: 'logisticsTeam', name: '📋marketing Team', desc: 'Event planning, coordination, and project management' }
     ];
 
     // Function to validate unique rankings
@@ -232,7 +232,7 @@ const JoinUs = () => {
                     linkedinProfile: '', state: '', howDidYouHear: '', howDidYouHearOther: '',
                     previousClubExperience: '', leadershipExperience: '', portfolioLinks: '',
                     interests: '', whyJoin: '', whatToAchieve: '', timeCommitment: '', teamRankings: {
-                        designTeam: '', sponsoringTeam: '', productionTeam: '', projectTeam: '', logisticsTeam: ''
+                        designTeam: '', sponsoringTeam: '', productionTeam: '', projectTeam: '',marketingTeam: ''
                     }, biggestStrength: '', skillToLearn: '', weekendAvailability: '',
                     schedulingConflicts: '', excitementLevel: '', additionalComments: '', agreement: false
                 });
