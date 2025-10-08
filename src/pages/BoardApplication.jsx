@@ -18,27 +18,27 @@ const BoardApplication = () => {
     email: '',
     linkedinProfile: '',
     socialMediaPage: '', // New Instagram/Facebook field
-    
+
     // Position Application
     desiredPosition: '',
     secondChoicePosition: '',
-    
+
     // Experience & Skills
     previousLeadershipExperience: '',
     relevantSkills: '',
     technicalSkills: [],
     portfolioLinks: '',
     achievements: '',
-    
+
     // Position-specific answers
     specificAnswers: {},
     secondChoiceAnswers: {},
-    
+
     // Motivation & Vision
     whyThisPosition: '',
     visionForClub: '',
     availabilityCommitment: '',
-    
+
     // Agreement
     agreement: false
   });
@@ -61,7 +61,7 @@ const BoardApplication = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    
+
     if (type === 'checkbox' && name === 'technicalSkills') {
       setFormData(prev => ({
         ...prev,
@@ -193,7 +193,7 @@ const BoardApplication = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validate form before submission
     if (!validateForm()) {
       return;
@@ -203,10 +203,10 @@ const BoardApplication = () => {
 
     try {
       const telegramSent = await sendBoardApplicationNotification(formData);
-      
+
       if (telegramSent) {
-        showSuccess('Thank you! Your application has been submitted successfully. We will review it and contact you within 2 weeks. 🎉');
-        
+        showSuccess('Thank you! Your application has been submitted successfully. We will review it and contact you As Soon As Possible. 🎉');
+
         // Reset form after successful submission
         setTimeout(() => {
           setFormData({
@@ -288,7 +288,7 @@ const BoardApplication = () => {
           {/* Personal Information */}
           <div className={styles.formSection}>
             <h2 className={styles.sectionTitle}>Personal Information</h2>
-            
+
             <div className={styles.inputGroup}>
               <label className={styles.label}>Full Name *</label>
               <input
@@ -315,7 +315,7 @@ const BoardApplication = () => {
                   disabled={isSubmitting}
                 />
               </div>
-              
+
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Gender *</label>
                 <select
@@ -368,7 +368,7 @@ const BoardApplication = () => {
                   <option value="Graduate">Graduate</option>
                 </select>
               </div>
-              
+
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Field of Study *</label>
                 <input
@@ -396,7 +396,7 @@ const BoardApplication = () => {
                   disabled={isSubmitting}
                 />
               </div>
-              
+
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Email Address *</label>
                 <input
@@ -424,7 +424,7 @@ const BoardApplication = () => {
                 disabled={isSubmitting}
               />
               <small className={styles.inputHint}>
-                We prefer a direct link for better results (e.g., https://linkedin.com/in/yourprofile). 
+                We prefer a direct link for better results (e.g., https://linkedin.com/in/yourprofile).
                 If you don't know how or can't provide a link, it's okay to use just your username.
               </small>
             </div>
@@ -449,7 +449,7 @@ const BoardApplication = () => {
           {/* Position Application */}
           <div className={styles.formSection}>
             <h2 className={styles.sectionTitle}>Position Application</h2>
-            
+
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Desired Position *</label>
@@ -467,7 +467,7 @@ const BoardApplication = () => {
                   ))}
                 </select>
               </div>
-              
+
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Second Choice Position *</label>
                 <select
@@ -497,7 +497,7 @@ const BoardApplication = () => {
           {/* Experience & Skills */}
           <div className={styles.formSection}>
             <h2 className={styles.sectionTitle}>Experience & Skills</h2>
-            
+
             <div className={styles.inputGroup}>
               <label className={styles.label}>Previous Leadership Experience *</label>
               <textarea
@@ -580,7 +580,7 @@ const BoardApplication = () => {
               <p className={styles.sectionNote}>
                 Please answer these questions specifically for your desired position: <strong>{formData.desiredPosition}</strong>
               </p>
-              
+
               {positionQuestions[formData.desiredPosition].map((question, index) => (
                 <div key={index} className={styles.inputGroup}>
                   <label className={styles.label}>
@@ -608,7 +608,7 @@ const BoardApplication = () => {
               <p className={styles.sectionNote}>
                 Please answer these questions specifically for your second choice position: <strong>{formData.secondChoicePosition}</strong>
               </p>
-              
+
               {positionQuestions[formData.secondChoicePosition].map((question, index) => (
                 <div key={index} className={styles.inputGroup}>
                   <label className={styles.label}>
@@ -632,7 +632,7 @@ const BoardApplication = () => {
           {/* Motivation & Vision */}
           <div className={styles.formSection}>
             <h2 className={styles.sectionTitle}>Motivation & Vision</h2>
-            
+
             <div className={styles.inputGroup}>
               <label className={styles.label}>Why do you want these positions? *</label>
               <textarea
@@ -679,7 +679,7 @@ const BoardApplication = () => {
           {/* Agreement */}
           <div className={styles.formSection}>
             <h2 className={styles.sectionTitle}>Agreement & Commitment</h2>
-            
+
             <div className={styles.agreementSection}>
               <label className={styles.agreementLabel}>
                 <input
@@ -692,9 +692,9 @@ const BoardApplication = () => {
                   disabled={isSubmitting}
                 />
                 <span className={styles.agreementText}>
-                  I understand that serving on the executive board requires significant time commitment and dedication. 
-                  I agree to fulfill my responsibilities for either my desired position or second choice position, 
-                  attend regular meetings, and contribute actively to the club's mission. 
+                  I understand that serving on the executive board requires significant time commitment and dedication.
+                  I agree to fulfill my responsibilities for either my desired position or second choice position,
+                  attend regular meetings, and contribute actively to the club's mission.
                   All information provided in this application is accurate and complete.
                 </span>
               </label>
@@ -702,8 +702,8 @@ const BoardApplication = () => {
           </div>
 
           <div className={styles.submitSection}>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className={styles.submitButton}
               disabled={isSubmitting}
             >
