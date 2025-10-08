@@ -83,22 +83,7 @@ const teamData = [
             website: "", // Add if available
             behance: "" // Add if available
         }
-    },
-    {
-        id: 7,
-        name: "Islem Mohsni",
-        position: "Design Manager",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img7.jpeg",
-        description: "Leading creative design initiatives and visual identity development. Specialized in UI/UX design and brand creative direction.",
-        social: {
-            linkedin: "https://www.linkedin.com/in/islem-mohsni-426469327/",
-            email: "islemmohsni155@gmail.com",
-            instagram: "", // Add if available
-            website: "", // Add if available
-            behance: "" // Add if available - Perfect for a designer!
-        }
     }
-
 ];
 
 export default teamData;
