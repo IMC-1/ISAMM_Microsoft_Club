@@ -81,7 +81,7 @@ export const positionQuestions = {
     'How would you handle negative feedback or criticism on social media while maintaining a positive brand image?'
   ],
 
-  'Training Manager': [
+  'Talent Manager': [
     'Describe your experience with teaching, training, or curriculum development.',
     'What topics would you prioritize in the club\'s training programs for members?',
     'How would you assess the effectiveness of training sessions and gather feedback?',
@@ -102,23 +102,6 @@ export const positionQuestions = {
   ],
 
 
-  'Business Development Manager': [
-    'Describe your experience with business development, strategic partnerships, or growth initiatives.',
-    'How would you identify new business opportunities and expansion areas for the club?',
-    'What strategies would you use to expand the club\'s reach, influence, and partnerships?',
-    'How comfortable are you with networking and building professional relationships with industry partners?',
-    'Describe your approach to market research, competitive analysis, and opportunity assessment.',
-    'How would you develop and maintain long-term relationships with corporate partners and stakeholders?'
-  ],
-
-  'Marketing Manager': [
-    'Describe your experience with digital marketing, campaign management, and marketing strategy.',
-    'How would you develop and execute comprehensive marketing strategies for club events and initiatives?',
-    'What marketing channels would you prioritize and why (social media, email, events, partnerships)?',
-    'How do you measure marketing campaign effectiveness, ROI, and key performance indicators?',
-    'Describe a successful marketing campaign you\'ve planned, executed, or contributed to.',
-    'How would you integrate traditional and digital marketing approaches to maximize reach and engagement?'
-  ],
 
   'Organization Committee President': [
     'What is your vision for the future of ISAMM Microsoft Club over the next year?',
