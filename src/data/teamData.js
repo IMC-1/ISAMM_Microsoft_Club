@@ -70,7 +70,8 @@ const teamData = [
             behance: "" // Add if available
         }
     },
-    {
+    /*{
+
         id: 6,
         name: "Achref Homri",
         position: "Marketing Manager",
@@ -83,7 +84,7 @@ const teamData = [
             website: "", // Add if available
             behance: "" // Add if available
         }
-    }
+    }*/
 ];
 
 export default teamData;
