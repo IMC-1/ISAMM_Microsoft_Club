@@ -70,21 +70,21 @@ const teamData = [
             behance: "" // Add if available
         }
     },
-    /*{
+    {
 
         id: 6,
-        name: "Achref Homri",
-        position: "Marketing Manager",
-        image: "/ISAMM_Microsoft_Club/assets/images/managers/img6.jpeg",
-        description: "Building brand awareness and managing marketing campaigns. Expert in digital marketing strategies and social media engagement.",
+        name: "Mathlouthi Aziz",
+        position: "Design Manager",
+        image: "/ISAMM_Microsoft_Club/assets/images/managers/img8.jpeg",
+        description: "A creative Design Manager experienced in developing strong visual identities and leading teams to deliver effective marketing campaigns. Expert in user-centered design, digital strategies, and boosting brand engagement across social platforms.",
         social: {
-            linkedin: "https://www.linkedin.com/in/achref-homri-326a41310/",
-            email: "achreffhomri123@gmail.com",
-            instagram: "", // Add if available
+            linkedin: "",// Add if available
+            email: "mathlouthiaziz001@gmail.com",
+            instagram: "https://www.instagram.com/mathlouthi_aziz420/", 
             website: "", // Add if available
-            behance: "" // Add if available
+            behance: "https://www.behance.net/mathlouthiaziz"
         }
-    }*/
+    }
 ];
 
 export default teamData;
